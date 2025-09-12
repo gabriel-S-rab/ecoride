@@ -7,7 +7,7 @@
           <input class="destination" type="text" name="destination" placeholder="destination">
           <input class="dateDeparture" type="date" name="date" placeholder="date">
           <input class="numberPassenger" type="number" min="0" max="4" name="numberPassenger" placeholder="passager">
-          <button class="btnSubmit" type="submit">rechercher</button>
+          <button class="btnSubmit" type="button">rechercher</button>
         </form>
     </div>
 </div>

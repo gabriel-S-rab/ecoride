@@ -7,6 +7,7 @@ const routes = {
   "/acceuil" : "/pages/acceuil.php",
   "/covoiturage" : "/pages/covoiturage.php",
   "/presentation" : "/pages/presentation.php",
+  "/carpoolingSearch": "/pages/carpoolingSearch.php"
 }
 
 const url = window.location.origin; 
@@ -17,6 +18,8 @@ const select = document.getElementById("select")
 let newUrl="";
 let path="";
 let utilisateur =""
+
+
 
 async function recovery(){
   const reponse = await fetch("/pages/test.json",{cache : "no-store"}) 
@@ -38,11 +41,44 @@ main.innerHTML = repAffich;
 }
 
 
+async function btnSearch(){
+  return new Promise((resolve) => {
+   const interval = setInterval(() => {
+   const btnSubmit = document.querySelector(".btnSubmit")
+   console.log(btnSubmit)
+   if(btnSubmit){
+    clearInterval(interval)
+    resolve(btnSubmit)
+    btnSubmit.addEventListener("click", (event) => { 
+      event.preventDefault()
+      console.log("ok")
+      let departure = document.querySelector(".departure").value
+      let destination = document.querySelector(".destination").value
+      let dateDeparture = document.querySelector(".dateDeparture").value
+      let numberPassenger = document.querySelector(".numberPassenger").value
+      
+      
+
+
+      })
+    }
+   }, 150)
+  })
+  }
+
+  
+
+
+
+
+
+
 if(window.location.href===url+'/'){
   path=routes["/presentation"]; 
   afficher(path);
 }
   
+
 
 
 select.addEventListener("change", async (event) => {
@@ -61,7 +97,6 @@ await afficher(path)
 
 
 if(document.readyState==="complete"){
-  console.log(utilisateur)
   utilisateur.forEach(element  => {
     let globalBlock = document.createElement("div")
     globalBlock.setAttribute("class","globalBlock")
@@ -106,16 +141,7 @@ default :
   // a implémenter
 break;
  }
-
-/*
-    navigate(event,path,url); 
-    newUrl = window.location.href;
-    if(newUrl===urlBase+path){
-         afficher(path);
-         }
-       */
-      }
-     )
+ })
       
 
 
@@ -123,8 +149,7 @@ break;
 // voir les possibilité avec popstate ou window pour gérer le rechargement (go-1)
 window.addEventListener("popstate", (event) => {
   event.preventDefault();
-    console.log(path);
-  if(event.state!==null){
+      if(event.state!==null){
     let currentpath = event.state.pages;
   afficher(currentpath);
   }else{
@@ -133,6 +158,15 @@ window.addEventListener("popstate", (event) => {
 })
 
 
-
+console.log(window.location.href)
+if(window.location.href==="http://localhost/"){
+btnSearch()
+}
+document.addEventListener("change", () => {
+if(window.location.href===url+routes["/presentation"]){
+btnSearch()
+}
+})
+  
  
        
