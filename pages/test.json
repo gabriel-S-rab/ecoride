@@ -1,0 +1,42 @@
+[
+    {
+    "pseudo": "jose", 
+    "note": 8, 
+    "place": 1 , 
+    "prix": 38, 
+    "date" : "15/08/2025",
+    "departureHour": "15h30", 
+    "finishHour": "17h30", 
+    "travelType": "oui"
+},
+{
+    "pseudo":"charle", 
+    "note": 9, 
+    "place": 2 , 
+    "prix": 26, 
+    "date" : "15/08/2025",
+    "departureHour": "14h30", 
+    "finishHour": "16h30", 
+    "travelType": "oui"
+},
+{
+    "pseudo":"charlotte", 
+    "note": 7.5,
+    "place": 3 , 
+    "prix": 68.5, 
+    "date" : "15/08/2025",
+    "departureHour": "11h00", 
+    "finishHour": "12h00", 
+    "travelType": "non"
+}, 
+{
+    "pseudo":"sandra", 
+    "note": 8.5,
+    "place": 1 , 
+    "prix": 52, 
+    "date" : "15/08/2025",
+    "departureHour": "19h30", 
+    "finishHour": "21h45", 
+    "travelType": "oui"
+}
+]
