@@ -2,7 +2,7 @@
 
 <div  class="presentation">
     <div class="input">
-        <form action="" method="GET">
+        <form>
           <input class="departure" type="text" name="departure" placeholder="départ">
           <input class="destination" type="text" name="destination" placeholder="destination">
           <input class="dateDeparture" type="date" name="date" placeholder="date">

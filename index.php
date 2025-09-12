@@ -14,6 +14,7 @@
             <div class="hidden"></div>
            
             <select type="submit" id="select" name="choice" placeholder="Menu">
+                <option value="menu" selected hidden>menu</option>
                 <option value="/acceuil">Accueil</option>
                 <option value="/covoiturage">Accés aux covoiturage</option>
                 <option value="/connexion">Connexion</option>

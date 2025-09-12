@@ -1,5 +1,7 @@
 [
     {
+   "departureCity" : "paris",
+   "destination" : "marseille",
     "pseudo": "jose", 
     "note": 8, 
     "place": 1 , 

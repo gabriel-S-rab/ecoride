@@ -18,6 +18,7 @@ const select = document.getElementById("select")
 let newUrl="";
 let path="";
 let utilisateur =""
+let valeur = "";
 
 
 
@@ -48,24 +49,34 @@ async function btnSearch(){
    console.log(btnSubmit)
    if(btnSubmit){
     clearInterval(interval)
-    resolve(btnSubmit)
-    btnSubmit.addEventListener("click", (event) => { 
+   // resolve(btnSubmit)
+   
+    btnSubmit.addEventListener("click", async (event) => { 
       event.preventDefault()
-      console.log("ok")
+     // valeur=0?? gestion probléme retour a l'accueil
       let departure = document.querySelector(".departure").value
       let destination = document.querySelector(".destination").value
       let dateDeparture = document.querySelector(".dateDeparture").value
       let numberPassenger = document.querySelector(".numberPassenger").value
-      
-      
-
-
-      })
+      path=routes["/carpoolingSearch"]
+      navigate(event,path,url);
+      await afficher(path)
+      select.selectedIndex=0
+      utilisateur.forEach(element => {
+        if(departure===element.departureCity){
+        console.log("ok")
+      }if(destination===element.destination){
+      console.log("ok")
+      }if(dateDeparture===element.dateDeparture){
+      console.log("ok")
+    }if(numberPassenger===element.place){
+      // console.log("ok")  
+           }  
+        });  
+      });  
     }
-   }, 150)
-  })
-  }
-
+  }, 150);
+})};
   
 
 
@@ -83,12 +94,15 @@ if(window.location.href===url+'/'){
 
 select.addEventListener("change", async (event) => {
  event.preventDefault();
- const valeur = event.target.value
+ valeur = event.target.value
+ select.selectedIndex=0
 switch(valeur){
 case "/acceuil" : 
   path = routes["/presentation"];
   navigate(event,path,url);
   await afficher(path)
+  btnSearch()
+  
 break; 
 case "/covoiturage" : 
   path = routes["/covoiturage"];
@@ -158,15 +172,15 @@ window.addEventListener("popstate", (event) => {
 })
 
 
-console.log(window.location.href)
 if(window.location.href==="http://localhost/"){
 btnSearch()
+valeur = "";
 }
-document.addEventListener("change", () => {
-if(window.location.href===url+routes["/presentation"]){
-btnSearch()
-}
-})
+
+
+
+
+
   
  
        
