@@ -1,2 +1,2 @@
 <h2 class="carpoolingTitle">je suis bien sur la page du covoiturage</h2>
-<div id="yzb" ></div>
+<div class="yzb" ></div>

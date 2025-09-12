@@ -2,11 +2,11 @@
     {
    "departureCity" : "paris",
    "destination" : "marseille",
+   "date" : "2025-08-15",
+   "place": 1 , 
     "pseudo": "jose", 
     "note": 8, 
-    "place": 1 , 
     "price": 38, 
-    "date" : "15/08/2025",
     "departureHour": "15h30", 
     "finishHour": "17h30", 
     "travelType": "oui"

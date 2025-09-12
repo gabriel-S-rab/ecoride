@@ -54,24 +54,29 @@ async function btnSearch(){
     btnSubmit.addEventListener("click", async (event) => { 
       event.preventDefault()
      // valeur=0?? gestion probléme retour a l'accueil
-      let departure = document.querySelector(".departure").value
-      let destination = document.querySelector(".destination").value
-      let dateDeparture = document.querySelector(".dateDeparture").value
-      let numberPassenger = document.querySelector(".numberPassenger").value
+      let departure = document.querySelector(".departure").value; console.log(departure)
+      let destination = document.querySelector(".destination").value; console.log(destination)
+      let dateDeparture = document.querySelector(".dateDeparture").value; console.log(dateDeparture)
+      let numberPassenger = document.querySelector(".numberPassenger").value; console.log(numberPassenger)
       path=routes["/carpoolingSearch"]
       navigate(event,path,url);
       await afficher(path)
       select.selectedIndex=0
       utilisateur.forEach(element => {
-        if(departure===element.departureCity){
+        let blockContainer = document.createElement("div")
+        const yzb = document.querySelector(".yzb")
+        if(departure===element.departureCity){     //réunir toute les condition pour filtrer les objets 
+        let blockDeparture = document.createElement("p")
+        blockDeparture.textContent = element.departureCity 
+        blockContainer.append(blockDeparture)
+        }if(destination===element.destination){
         console.log("ok")
-      }if(destination===element.destination){
+      }if(dateDeparture===element.date){
       console.log("ok")
-      }if(dateDeparture===element.dateDeparture){
-      console.log("ok")
-    }if(numberPassenger===element.place){
-      // console.log("ok")  
+    }if(numberPassenger==element.place){
+       console.log("ok") 
            }  
+           yzb.append(blockContainer)
         });  
       });  
     }
