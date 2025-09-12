@@ -76,9 +76,20 @@ if(document.readyState==="complete"){
     blockDate.textContent = element.date
     let blockPlace = document.createElement("p")
     blockPlace.textContent= element.place
+    let blockDepartureHour = document.createElement("p")
+    blockDepartureHour.textContent = element.departureHour
+    let blockFinishHour = document.createElement("p")
+    blockFinishHour.textContent = element.finishHour
+    let blocktravelType = document.createElement("p")
+    blocktravelType.textContent = element.travelType
     globalBlock.append(blockPseudo)
     globalBlock.append(blockNote)
     globalBlock.append(blockPlace)
+    globalBlock.append(blockPrice)
+    globalBlock.append(blockDate)
+    globalBlock.append(blockDepartureHour)
+    globalBlock.append(blockFinishHour)
+    globalBlock.append(blocktravelType)
     yzb.append(globalBlock)
   })
 }
