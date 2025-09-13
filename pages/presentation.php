@@ -4,9 +4,9 @@
     <div class="input">
         <form>
           <input class="departure" type="text" name="departure" placeholder="départ">
-          <input class="destination" type="text" name="destination" placeholder="destination">
-          <input class="dateDeparture" type="date" name="date" placeholder="date">
-          <input class="numberPassenger" type="number" min="0" max="4" name="numberPassenger" placeholder="passager">
+          <input class="destination" type="text" name="destination" placeholder="destination" required>
+          <input class="dateDeparture" type="date" name="date" placeholder="date" required>
+          <input class="numberPassenger" type="number" min="1" max="4" name="numberPassenger" placeholder="passager" required>
           <button class="btnSubmit" type="button">rechercher</button>
         </form>
     </div>
