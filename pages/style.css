@@ -258,17 +258,27 @@ a
     perspective: 600px;
 }
 
-.blockContainer 
+.carpoolingSearch 
 {
-    border:1px solid black; 
+    border: 1px solid black;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    width:60%; 
+    border-radius: 20px;
+    margin: auto;
+}
+
+.blockContainer1,.blockContainer2
+{
     border-radius: 20px;
     perspective: 600px; 
     margin-top: 40px;
-    width: 60%;
+    width: 40%;
     margin:auto;
 }
 
-.blockDepartureCity,.blockDestination, .blockDateDeparture,.blockNumberPassenger 
+.blockDepartureCity,.blockDestination, .blockDateDeparture,.blockNumberPassenger,.blockDepartureHour,.blockFinishHour,.blockPrice,.blockTravelType,.blockImage,.blockPseudo,.blockNote
 {
     margin-left: 20px; 
     font-family: Arial, Helvetica, sans-serif;
@@ -279,4 +289,9 @@ a
 {
     object-fit: contain;
     margin-left: 20px;
+}
+.blockNote 
+{
+    margin-top: 20px;
+    border: 1px solid black;
 }
