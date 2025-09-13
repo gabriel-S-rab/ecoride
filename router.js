@@ -64,19 +64,27 @@ async function btnSearch(){
       select.selectedIndex=0
       utilisateur.forEach(element => {
         let blockContainer = document.createElement("div")
+        blockContainer.setAttribute("class","blockContainer")
         const yzb = document.querySelector(".yzb")
-        if(departure===element.departureCity){     //réunir toute les condition pour filtrer les objets 
-        let blockDeparture = document.createElement("p")
-        blockDeparture.textContent = element.departureCity 
-        blockContainer.append(blockDeparture)
-        }if(destination===element.destination){
-        console.log("ok")
-      }if(dateDeparture===element.date){
-      console.log("ok")
-    }if(numberPassenger==element.place){
-       console.log("ok") 
-           }  
-           yzb.append(blockContainer)
+        if(departure===element.departureCity && destination===element.destination && dateDeparture===element.date && numberPassenger==element.place){
+              let blockDepartureCity = document.createElement("p")
+              blockDepartureCity.setAttribute("class","blockDepartureCity")
+              blockDepartureCity.textContent = element.departureCity
+              let blockDestination = document.createElement("p")
+              blockDestination.setAttribute("class","blockDestination")
+              blockDestination.textContent = element.destination
+              let blockDateDeparture = document.createElement("p")
+              blockDateDeparture.setAttribute("class","blockDateDeparture")
+              blockDateDeparture.textContent = element.date
+              let blockNumberPassenger = document.createElement("p")
+              blockNumberPassenger.setAttribute("class","blockNumberPassenger")
+              blockNumberPassenger.textContent = element.place
+              blockContainer.append(blockDepartureCity,blockDestination,blockDateDeparture,blockNumberPassenger)
+              yzb.append(blockContainer)
+           }else{
+
+           }
+           
         });  
       });  
     }

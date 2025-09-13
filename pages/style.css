@@ -257,3 +257,20 @@ a
     border-radius: 20px;
     perspective: 600px;
 }
+
+.blockContainer 
+{
+    border:1px solid black; 
+    border-radius: 20px;
+    perspective: 600px; 
+    margin-top: 40px;
+    width: 60%;
+    margin:auto;
+}
+
+.blockDepartureCity,.blockDestination, .blockDateDeparture,.blockNumberPassenger 
+{
+    margin-left: 20px; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
