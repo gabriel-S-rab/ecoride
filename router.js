@@ -13,7 +13,6 @@ const routes = {
 const url = window.location.origin; 
 const urlBase = url;
 let main = document.querySelector(".main");
-console.log(main)
 const select = document.getElementById("select")
 let newUrl="";
 let path="";
@@ -24,11 +23,9 @@ let erreur;
 
 
 async function recovery(){
-  const reponse = await fetch("/pages/test.json",{cache : "no-store"}) 
+   const reponse = await fetch("/pages/test.json",{cache : "no-store"}) 
    utilisateur = await reponse.json().then(Response => {
-  console.log("ok") 
- console.log(Response)
- return utilisateur =  Response
+   return utilisateur =  Response
  })
 }
 
@@ -47,18 +44,20 @@ async function btnSearch(){
   return new Promise((resolve) => {
    const interval = setInterval(() => {
    const btnSubmit = document.querySelector(".btnSubmit")
-   console.log(btnSubmit)
    if(btnSubmit){
     clearInterval(interval)
-   // resolve(btnSubmit)
+   resolve(btnSubmit) // attention 
    
     btnSubmit.addEventListener("click", async (event) => { 
       event.preventDefault()
-     // valeur=0?? gestion probléme retour a l'accueil
-      let departure = document.querySelector(".departure").value; console.log(departure)
-      let destination = document.querySelector(".destination").value; console.log(destination)
-      let dateDeparture = document.querySelector(".dateDeparture").value; console.log(dateDeparture)
-      let numberPassenger = document.querySelector(".numberPassenger").value; console.log(numberPassenger)
+     
+      let departure = document.querySelector(".departure").value; 
+      let destination = document.querySelector(".destination").value; 
+      let dateDeparture = document.querySelector(".dateDeparture").value; 
+      let numberPassenger = document.querySelector(".numberPassenger").value; 
+      if(departure==="" || destination==="" || dateDeparture==="" || numberPassenger===""){
+        console.log("erreur")  //implémenter un élément pour gérer des champs vide ou mal rempli
+      }else {
       path=routes["/carpoolingSearch"]
       navigate(event,path,url);
       await afficher(path)
@@ -125,7 +124,7 @@ async function btnSearch(){
               blockContainer2.append(blockPseudo,blockNote,blockImage)
               carpoolingSearch.append(blockContainer1,blockContainer2)
               }
-             })
+             })}
           });  
        }
      }, 150);
