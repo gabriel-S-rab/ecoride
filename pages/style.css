@@ -2,6 +2,7 @@
 {
 --primary_color : #4CAF50;
 --secondary_color:#D8CBB5;
+--third_color:#BFC1B4;
 }
 
 body 
@@ -255,7 +256,7 @@ a
     width: 70%; 
     margin:auto;
     margin-top: 40px;
-    box-shadow: 10px 10px 10px 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     perspective: 600px;
 }
@@ -303,4 +304,45 @@ width: 100vw;
 {
     margin-top: 20px;
     border: 1px solid black;
+}
+
+.filterForm 
+{
+    display:flex; 
+    justify-content: center;
+    flex-direction: column;
+    width: 16%;
+    position:absolute; 
+    margin-left: 20px ; 
+    margin-top: 40px;
+    border-radius: 20px;
+    background-color: var(--third_color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filterElement 
+{
+    text-align: center;
+    align-content: center;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 25px;
+}
+
+.inputForm
+{
+    border:none;
+}
+
+.btnForm 
+{
+    border:none; 
+    background-color: var(--primary_color);
+    cursor:pointer;
+    color:white;
+}
+
+input[type="checkbox"]
+{
+    height: 15px; 
 }

@@ -125,6 +125,8 @@ async function btnSearch(){
               blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
               blockContainer2.append(blockPseudo,blockNote,blockImage)
               carpoolingSearch.append(blockContainer1,blockContainer2)
+
+              // implémenter un systéme de filtre
               }
              })}
           });  
