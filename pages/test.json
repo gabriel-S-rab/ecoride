@@ -9,7 +9,8 @@
     "price": 38, 
     "departureHour": "15h30", 
     "finishHour": "17h30", 
-    "travelType": "oui"
+    "travelType": "oui",
+    "profilImage": "/image/image1.jpg"
 },
 {
     "pseudo":"charle", 

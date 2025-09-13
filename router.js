@@ -63,24 +63,31 @@ async function btnSearch(){
       await afficher(path)
       select.selectedIndex=0
       utilisateur.forEach(element => {
-        let blockContainer = document.createElement("div")
-        blockContainer.setAttribute("class","blockContainer")
-        const yzb = document.querySelector(".yzb")
+        let blockContainer1 = document.createElement("div")
+        blockContainer1.setAttribute("class","blockContainer")
+        let blockContainer2 = document.createElement("div")
+        const carpoolingSearch = document.querySelector(".carpoolingSearch")
         if(departure===element.departureCity && destination===element.destination && dateDeparture===element.date && numberPassenger==element.place){
               let blockDepartureCity = document.createElement("p")
               blockDepartureCity.setAttribute("class","blockDepartureCity")
-              blockDepartureCity.textContent = element.departureCity
+              blockDepartureCity.textContent ="ville de départ : "+element.departureCity
               let blockDestination = document.createElement("p")
               blockDestination.setAttribute("class","blockDestination")
-              blockDestination.textContent = element.destination
+              blockDestination.textContent = "ville de destination : "+element.destination
               let blockDateDeparture = document.createElement("p")
               blockDateDeparture.setAttribute("class","blockDateDeparture")
-              blockDateDeparture.textContent = element.date
+              blockDateDeparture.textContent = "date de départ : "+element.date
               let blockNumberPassenger = document.createElement("p")
               blockNumberPassenger.setAttribute("class","blockNumberPassenger")
-              blockNumberPassenger.textContent = element.place
-              blockContainer.append(blockDepartureCity,blockDestination,blockDateDeparture,blockNumberPassenger)
-              yzb.append(blockContainer)
+              blockNumberPassenger.textContent = "place disponible : "+element.place
+              let blockImage = document.createElement("img")
+              blockImage.setAttribute("class","blockImage")
+              blockImage.setAttribute("src",`${element.profilImage}`)
+              blockImage.setAttribute("height","200px")
+              blockImage.setAttribute("width","150px")
+              blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockNumberPassenger,blockImage)
+              blockContainer2.append()
+              carpoolingSearch.append(blockContainer1)
            }else{
 
            }
@@ -127,7 +134,7 @@ if(document.readyState==="complete"){
   utilisateur.forEach(element  => {
     let globalBlock = document.createElement("div")
     globalBlock.setAttribute("class","globalBlock")
-    let yzb = document.getElementById("yzb")
+    let carpoolingGlobal = document.getElementById("carpoolingGlobal")
     let blockNote = document.createElement("p")
     blockNote.textContent = element.note
     let blockPseudo = document.createElement("p")
@@ -152,7 +159,7 @@ if(document.readyState==="complete"){
     globalBlock.append(blockDepartureHour)
     globalBlock.append(blockFinishHour)
     globalBlock.append(blocktravelType)
-    yzb.append(globalBlock)
+    carpoolingGlobal.append(globalBlock)
   })
 }
 
