@@ -3,10 +3,9 @@
 <div  class="presentation">
     <div class="input">
         <form>
-          <input class="departure" type="text" name="departure" placeholder="départ">
-          <input class="destination" type="text" name="destination" placeholder="destination" required>
-          <input class="dateDeparture" type="date" name="date" placeholder="date" required>
-          <input class="numberPassenger" type="number" min="1" max="4" name="numberPassenger" placeholder="passager" required>
+          <input class="departure" type="text" name="departure" placeholder="ville de départ">
+          <input class="destination" type="text" name="destination" placeholder="ville de destination">
+          <input class="dateDeparture" type="date" name="date" placeholder="date">
           <button class="btnSubmit" type="button">rechercher</button>
         </form>
     </div>

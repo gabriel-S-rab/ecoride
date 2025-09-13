@@ -53,9 +53,8 @@ async function btnSearch(){
      
       let departure = document.querySelector(".departure").value; 
       let destination = document.querySelector(".destination").value; 
-      let dateDeparture = document.querySelector(".dateDeparture").value; 
-      let numberPassenger = document.querySelector(".numberPassenger").value; 
-      if(departure==="" || destination==="" || dateDeparture==="" || numberPassenger===""){
+      let dateDeparture = document.querySelector(".dateDeparture").value;
+      if(departure==="" || destination==="" || dateDeparture===""){
         console.log("erreur")  //implémenter un élément pour gérer des champs vide ou mal rempli
       }else {
       path=routes["/carpoolingSearch"]
@@ -63,12 +62,15 @@ async function btnSearch(){
       await afficher(path)
       select.selectedIndex=0
       utilisateur.forEach(element => {
+        
         let blockContainer1 = document.createElement("div")
         blockContainer1.setAttribute("class","blockContainer1")
-        let blockContainer2 = document.createElement("div")
+        
+        
+      let blockContainer2 = document.createElement("div")
         blockContainer2.setAttribute("class","blockContainer2")
         const carpoolingSearch = document.querySelector(".carpoolingSearch")
-        if(departure===element.departureCity && destination===element.destination && dateDeparture===element.date && numberPassenger==element.place){
+        if(departure===element.departureCity && destination===element.destination && dateDeparture===element.date){
               let blockDepartureCity = document.createElement("p")
               blockDepartureCity.setAttribute("class","blockDepartureCity")
               blockDepartureCity.textContent ="ville de départ : "+element.departureCity
@@ -95,7 +97,7 @@ async function btnSearch(){
              
               let blockPrice = document.createElement("p")
               blockPrice.setAttribute("class","blockPrice")
-              blockPrice.textContent = "prix du voyage : "+element.price
+              blockPrice.textContent = "prix du voyage : "+element.price+" €"
               
               let blockTravelType = document.createElement("p")
               blockTravelType.setAttribute("class","blockTravelType")
