@@ -125,7 +125,25 @@ async function btnSearch(){
               blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
               blockContainer2.append(blockPseudo,blockNote,blockImage)
               carpoolingSearch.append(blockContainer1,blockContainer2)
+             
+              
+             const filterInterval = setInterval(() => {
+                const btnForm = document.querySelector(".btnForm")
+                let travelEco = document.getElementById("travelEco")
+                let travelPrice = document.getElementById("travelPrice")
+                let travelDuration = document.getElementById("travelDuration")
+                let driverNotation = document.getElementById("driverNotation")
+                if(btnForm!==null && travelEco!==null && travelPrice!==null && travelDuration!==null && driverNotation!==null){
+                console.log("ok")
+                 clearInterval(filterInterval)
+                btnForm.addEventListener("click", () => {
+                console.log("ok")
+                console.log(travelEco.value)
+                })}
+              
 
+              },150)
+              
               // implémenter un systéme de filtre
               }
              })}
@@ -135,6 +153,7 @@ async function btnSearch(){
 })};
   
 
+//function async pour gestion filtre 
 
 
 
