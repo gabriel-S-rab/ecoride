@@ -21,7 +21,6 @@ let valeur = "";
 let erreur; 
 
 
-
 async function recovery(){
    const reponse = await fetch("/pages/test.json",{cache : "no-store"}) 
    utilisateur = await reponse.json().then(Response => {
@@ -63,14 +62,23 @@ async function btnSearch(){
       select.selectedIndex=0
       utilisateur.forEach(element => {
         
-        let blockContainer1 = document.createElement("div")
-        blockContainer1.setAttribute("class","blockContainer1")
-        
-        
-      let blockContainer2 = document.createElement("div")
-        blockContainer2.setAttribute("class","blockContainer2")
-        const carpoolingSearch = document.querySelector(".carpoolingSearch")
+
         if(departure===element.departureCity && destination===element.destination && dateDeparture===element.date){
+              
+          
+          
+              let carpoolingSearch = document.querySelector(".carpoolingSearchBlock")
+
+              let blockCentral = document.createElement("div")
+              blockCentral.setAttribute("class","carpoolingSearch")
+        
+              let blockContainer1 = document.createElement("div")
+              blockContainer1.setAttribute("class","blockContainer1")
+        
+        
+              let blockContainer2 = document.createElement("div")
+              blockContainer2.setAttribute("class","blockContainer2")
+          
               let blockDepartureCity = document.createElement("p")
               blockDepartureCity.setAttribute("class","blockDepartureCity")
               blockDepartureCity.textContent ="ville de départ : "+element.departureCity
@@ -124,36 +132,146 @@ async function btnSearch(){
 
               blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
               blockContainer2.append(blockPseudo,blockNote,blockImage)
-              carpoolingSearch.append(blockContainer1,blockContainer2)
+              blockCentral.append(blockContainer1,blockContainer2)
+              carpoolingSearch.append(blockCentral)
              
+              // test  
+               let  parseDepartureHour = parseInt(element.departureHour)
+               let  parseFinishHour = parseInt(element.finishHour)
+               let travelTime= parseFinishHour-parseDepartureHour
+               console.log(travelTime)//temps de voyage
+            
+              }
+             })
               
-             const filterInterval = setInterval(() => {
+             //test
+             
+              const filterInterval = setInterval(() => {
+    console.log("oks")
+    console.log(path)
                 const btnForm = document.querySelector(".btnForm")
                 let travelEco = document.getElementById("travelEco")
                 let travelPrice = document.getElementById("travelPrice")
                 let travelDuration = document.getElementById("travelDuration")
                 let driverNotation = document.getElementById("driverNotation")
-                if(btnForm!==null && travelEco!==null && travelPrice!==null && travelDuration!==null && driverNotation!==null){
-                console.log("ok")
+                let  blockContainer1=document.querySelector(".blockContainer1")
+                let  blockContainer2=document.querySelector(".blockContainer2")
+                let  blockCentral=document.querySelector(".blockCentral")
+                let  carpoolingSearch=document.querySelector(".carpoolingSearchBlock")
+                
+                console.log(carpoolingSearch)
+                //modif
+                
+            /*    if(btnForm!==null && travelEco!==null && travelPrice!==null && travelDuration!==null && driverNotation!==null){   */  
+            if(carpoolingSearch!==null){
+              console.log("ok")
                  clearInterval(filterInterval)
                 btnForm.addEventListener("click", () => {
-                console.log("ok")
+                //test
+              let  blockContainer1=document.querySelector(".blockContainer1")
+              let  blockContainer2=document.querySelector(".blockContainer2")
+              let  blockCentral=document.querySelector(".carpoolingSearch")
+              let  carpoolingSearch=document.querySelector(".carpoolingSearchBlock")
+               
+              console.log(blockContainer1)
+              console.log(blockContainer2)
+              console.log(blockCentral)
+              console.log(carpoolingSearch)
+
+
+                blockContainer1.innerHTML=""
+                blockContainer2.innerHTML=""
+                blockCentral.innerHTML="" 
+                carpoolingSearch.innerHTML=""
+                
+                console.log(carpoolingSearch)
                 console.log(travelEco.value)
-                })}
+                
+                utilisateur.forEach(element => {
+                  if(element.travelType===travelEco.value){
+                  //code a tester ici
+                  console.log(`je suis bien entrer dans la condition est ma valeur est ${travelEco.value}`)
+                   let carpoolingSearch = document.querySelector(".carpoolingSearchBlock")
+
+              let blockCentral = document.createElement("div")
+              blockCentral.setAttribute("class","carpoolingSearch")
+        
+              let blockContainer1 = document.createElement("div")
+              blockContainer1.setAttribute("class","blockContainer1")
+        
+        
+              let blockContainer2 = document.createElement("div")
+              blockContainer2.setAttribute("class","blockContainer2")
+          
+              let blockDepartureCity = document.createElement("p")
+              blockDepartureCity.setAttribute("class","blockDepartureCity")
+              blockDepartureCity.textContent ="ville de départ : "+element.departureCity
+              
+              let blockDestination = document.createElement("p")
+              blockDestination.setAttribute("class","blockDestination")
+              blockDestination.textContent = "ville de destination : "+element.destination
+              
+              let blockDateDeparture = document.createElement("p")
+              blockDateDeparture.setAttribute("class","blockDateDeparture")
+              blockDateDeparture.textContent = "date de départ : "+element.date
+             
+              let blockDepartureHour = document.createElement("p")
+              blockDepartureHour.setAttribute("class","blockDepartureHour")
+              blockDepartureHour.textContent = "heure de départ : "+element.departureHour
+             
+              let blockFinishHour = document.createElement("p")
+              blockFinishHour.setAttribute("class","blockFinishHour")
+              blockFinishHour.textContent = "heure d'arrivée : "+ element.finishHour
+             
+              let blockNumberPassenger = document.createElement("p")
+              blockNumberPassenger.setAttribute("class","blockNumberPassenger")
+              blockNumberPassenger.textContent = "place disponible : "+element.place
+             
+              let blockPrice = document.createElement("p")
+              blockPrice.setAttribute("class","blockPrice")
+              blockPrice.textContent = "prix du voyage : "+element.price+" €"
+              
+              let blockTravelType = document.createElement("p")
+              blockTravelType.setAttribute("class","blockTravelType")
+              blockTravelType.textContent = "voyage écologique : "+element.travelType
+             
+              let blockImage = document.createElement("img")
+              blockImage.setAttribute("class","blockImage")
+              blockImage.setAttribute("src",`${element.profilImage}`)
+              blockImage.setAttribute("height","100px")
+              blockImage.setAttribute("width","100px")
+             
+             
+              let blockPseudo = document.createElement("p")
+              blockPseudo.setAttribute("class","blockPseudo")
+              blockPseudo.textContent = "pseudo : "+element.pseudo
+              
+              let blockNote = document.createElement("blockNote")
+              blockNote.setAttribute("class","blockNote")
+              blockNote.textContent = "note du chauffeur : "+element.note
+
+              let btnDetail = document.createElement("button")
+              btnDetail.setAttribute("class","btnDetail")
+              btnDetail.textContent = "détail"
+
+              blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
+              blockContainer2.append(blockPseudo,blockNote,blockImage)
+              blockCentral.append(blockContainer1,blockContainer2)
+              carpoolingSearch.append(blockCentral)
               
 
-              },150)
-              
-              // implémenter un systéme de filtre
-              }
-             })}
+                  //code tester
+                  }
+                })
+                })
+              }},150)
+
+             //test
+            }
           });  
        }
-     }, 150);
+     }, 150);    
 })};
-  
-
-//function async pour gestion filtre 
 
 
 

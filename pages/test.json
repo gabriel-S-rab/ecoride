@@ -13,33 +13,55 @@
     "profilImage": "/image/image1.jpg"
 },
 {
-    "pseudo":"charle", 
+    "departureCity" : "paris",
+   "destination" : "marseille",
+   "date" : "2025-08-15",
+   "place": 2 , 
+    "pseudo": "jinnette", 
     "note": 9, 
-    "place": 2 , 
-    "price": 26, 
-    "date" : "15/08/2025",
-    "departureHour": "14h30", 
-    "finishHour": "16h30", 
-    "travelType": "oui"
+    "price": 42, 
+    "departureHour": "15h30", 
+    "finishHour": "17h30", 
+    "travelType": "oui",
+    "profilImage": "/image/image1.jpg"
 },
 {
-    "pseudo":"charlotte", 
-    "note": 7.5,
-    "place": 3 , 
-    "price": 68.5, 
-    "date" : "15/08/2025",
-    "departureHour": "11h00", 
-    "finishHour": "12h00", 
-    "travelType": "non"
+     "departureCity" : "paris",
+   "destination" : "marseille",
+   "date" : "2025-08-15",
+   "place": 1 , 
+    "pseudo": "jose", 
+    "note": 8, 
+    "price": 38, 
+    "departureHour": "15h30", 
+    "finishHour": "17h30", 
+    "travelType": "non",
+    "profilImage": "/image/image1.jpg"
+},
+{
+     "departureCity" : "paris",
+   "destination" : "marseille",
+   "date" : "2025-08-15",
+   "place": 1 , 
+    "pseudo": "jose", 
+    "note": 8, 
+    "price": 38, 
+    "departureHour": "15h30", 
+    "finishHour": "17h30", 
+    "travelType": "non",
+    "profilImage": "/image/image1.jpg"
 }, 
 {
-    "pseudo":"sandra", 
-    "note": 8.5,
-    "place": 1 , 
-    "price": 52, 
-    "date" : "15/08/2025",
-    "departureHour": "19h30", 
-    "finishHour": "21h45", 
-    "travelType": "oui"
+     "departureCity" : "paris",
+   "destination" : "marseille",
+   "date" : "2025-08-15",
+   "place": 1 , 
+    "pseudo": "jose", 
+    "note": 8, 
+    "price": 38, 
+    "departureHour": "15h30", 
+    "finishHour": "17h30", 
+    "travelType": "non",
+    "profilImage": "/image/image1.jpg"
 }
 ]
