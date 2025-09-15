@@ -263,8 +263,14 @@ a
 
 .carpoolingContainer
 {
-height:100vh;
-width: 100vw;
+height:100%;
+width: 100%;
+}
+
+.carpoolingSearchBlock 
+{
+    height:100%; 
+    width:100%;
 }
 
 
@@ -277,6 +283,7 @@ width: 100vw;
     width:60%; 
     border-radius: 20px;
     margin: auto;
+    margin-top: 30px;
 }
 
 .blockContainer1,.blockContainer2

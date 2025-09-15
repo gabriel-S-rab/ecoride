@@ -38,6 +38,78 @@ const repAffich = await reponse.text();
 main.innerHTML = repAffich;
 }
 
+//nouveau test de fonction
+function screenBlock(element){
+console.log(`je suis bien entrer dans la condition est ma valeur est ${travelEco.value}`)
+                   let carpoolingSearch = document.querySelector(".carpoolingSearchBlock")
+
+              let blockCentral = document.createElement("div")
+              blockCentral.setAttribute("class","carpoolingSearch")
+        
+              let blockContainer1 = document.createElement("div")
+              blockContainer1.setAttribute("class","blockContainer1")
+        
+        
+              let blockContainer2 = document.createElement("div")
+              blockContainer2.setAttribute("class","blockContainer2")
+          
+              let blockDepartureCity = document.createElement("p")
+              blockDepartureCity.setAttribute("class","blockDepartureCity")
+              blockDepartureCity.textContent ="ville de départ : "+element.departureCity
+              
+              let blockDestination = document.createElement("p")
+              blockDestination.setAttribute("class","blockDestination")
+              blockDestination.textContent = "ville de destination : "+element.destination
+              
+              let blockDateDeparture = document.createElement("p")
+              blockDateDeparture.setAttribute("class","blockDateDeparture")
+              blockDateDeparture.textContent = "date de départ : "+element.date
+             
+              let blockDepartureHour = document.createElement("p")
+              blockDepartureHour.setAttribute("class","blockDepartureHour")
+              blockDepartureHour.textContent = "heure de départ : "+element.departureHour
+             
+              let blockFinishHour = document.createElement("p")
+              blockFinishHour.setAttribute("class","blockFinishHour")
+              blockFinishHour.textContent = "heure d'arrivée : "+ element.finishHour
+             
+              let blockNumberPassenger = document.createElement("p")
+              blockNumberPassenger.setAttribute("class","blockNumberPassenger")
+              blockNumberPassenger.textContent = "place disponible : "+element.place
+             
+              let blockPrice = document.createElement("p")
+              blockPrice.setAttribute("class","blockPrice")
+              blockPrice.textContent = "prix du voyage : "+element.price+" €"
+              
+              let blockTravelType = document.createElement("p")
+              blockTravelType.setAttribute("class","blockTravelType")
+              blockTravelType.textContent = "voyage écologique : "+element.travelType
+             
+              let blockImage = document.createElement("img")
+              blockImage.setAttribute("class","blockImage")
+              blockImage.setAttribute("src",`${element.profilImage}`)
+              blockImage.setAttribute("height","100px")
+              blockImage.setAttribute("width","100px")
+             
+             
+              let blockPseudo = document.createElement("p")
+              blockPseudo.setAttribute("class","blockPseudo")
+              blockPseudo.textContent = "pseudo : "+element.pseudo
+              
+              let blockNote = document.createElement("blockNote")
+              blockNote.setAttribute("class","blockNote")
+              blockNote.textContent = "note du chauffeur : "+element.note
+
+              let btnDetail = document.createElement("button")
+              btnDetail.setAttribute("class","btnDetail")
+              btnDetail.textContent = "détail"
+
+              blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
+              blockContainer2.append(blockPseudo,blockNote,blockImage)
+              blockCentral.append(blockContainer1,blockContainer2)
+              carpoolingSearch.append(blockCentral)
+}
+
 
 async function btnSearch(){
   return new Promise((resolve) => {
@@ -160,10 +232,9 @@ async function btnSearch(){
                 let  carpoolingSearch=document.querySelector(".carpoolingSearchBlock")
                 
                 console.log(carpoolingSearch)
-                //modif
+                //modif condition
                 
-            /*    if(btnForm!==null && travelEco!==null && travelPrice!==null && travelDuration!==null && driverNotation!==null){   */  
-            if(carpoolingSearch!==null){
+                if(btnForm!==null && travelEco!==null && travelPrice!==null && travelDuration!==null && driverNotation!==null && carpoolingSearch!==null){
               console.log("ok")
                  clearInterval(filterInterval)
                 btnForm.addEventListener("click", () => {
@@ -172,7 +243,8 @@ async function btnSearch(){
               let  blockContainer2=document.querySelector(".blockContainer2")
               let  blockCentral=document.querySelector(".carpoolingSearch")
               let  carpoolingSearch=document.querySelector(".carpoolingSearchBlock")
-               
+              let parseTravelPrice = parseInt(travelPrice.value)
+
               console.log(blockContainer1)
               console.log(blockContainer2)
               console.log(blockCentral)
@@ -183,90 +255,31 @@ async function btnSearch(){
                 blockContainer2.innerHTML=""
                 blockCentral.innerHTML="" 
                 carpoolingSearch.innerHTML=""
-                
+                travelEco.selectIndex=0
                 console.log(carpoolingSearch)
                 console.log(travelEco.value)
+                console.log(typeof parseTravelPrice)
+                console.log(travelDuration)
+                console.log(driverNotation)
                 
                 utilisateur.forEach(element => {
-                  if(element.travelType===travelEco.value){
-                  //code a tester ici
-                  console.log(`je suis bien entrer dans la condition est ma valeur est ${travelEco.value}`)
-                   let carpoolingSearch = document.querySelector(".carpoolingSearchBlock")
-
-              let blockCentral = document.createElement("div")
-              blockCentral.setAttribute("class","carpoolingSearch")
-        
-              let blockContainer1 = document.createElement("div")
-              blockContainer1.setAttribute("class","blockContainer1")
-        
-        
-              let blockContainer2 = document.createElement("div")
-              blockContainer2.setAttribute("class","blockContainer2")
-          
-              let blockDepartureCity = document.createElement("p")
-              blockDepartureCity.setAttribute("class","blockDepartureCity")
-              blockDepartureCity.textContent ="ville de départ : "+element.departureCity
-              
-              let blockDestination = document.createElement("p")
-              blockDestination.setAttribute("class","blockDestination")
-              blockDestination.textContent = "ville de destination : "+element.destination
-              
-              let blockDateDeparture = document.createElement("p")
-              blockDateDeparture.setAttribute("class","blockDateDeparture")
-              blockDateDeparture.textContent = "date de départ : "+element.date
-             
-              let blockDepartureHour = document.createElement("p")
-              blockDepartureHour.setAttribute("class","blockDepartureHour")
-              blockDepartureHour.textContent = "heure de départ : "+element.departureHour
-             
-              let blockFinishHour = document.createElement("p")
-              blockFinishHour.setAttribute("class","blockFinishHour")
-              blockFinishHour.textContent = "heure d'arrivée : "+ element.finishHour
-             
-              let blockNumberPassenger = document.createElement("p")
-              blockNumberPassenger.setAttribute("class","blockNumberPassenger")
-              blockNumberPassenger.textContent = "place disponible : "+element.place
-             
-              let blockPrice = document.createElement("p")
-              blockPrice.setAttribute("class","blockPrice")
-              blockPrice.textContent = "prix du voyage : "+element.price+" €"
-              
-              let blockTravelType = document.createElement("p")
-              blockTravelType.setAttribute("class","blockTravelType")
-              blockTravelType.textContent = "voyage écologique : "+element.travelType
-             
-              let blockImage = document.createElement("img")
-              blockImage.setAttribute("class","blockImage")
-              blockImage.setAttribute("src",`${element.profilImage}`)
-              blockImage.setAttribute("height","100px")
-              blockImage.setAttribute("width","100px")
-             
-             
-              let blockPseudo = document.createElement("p")
-              blockPseudo.setAttribute("class","blockPseudo")
-              blockPseudo.textContent = "pseudo : "+element.pseudo
-              
-              let blockNote = document.createElement("blockNote")
-              blockNote.setAttribute("class","blockNote")
-              blockNote.textContent = "note du chauffeur : "+element.note
-
-              let btnDetail = document.createElement("button")
-              btnDetail.setAttribute("class","btnDetail")
-              btnDetail.textContent = "détail"
-
-              blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
-              blockContainer2.append(blockPseudo,blockNote,blockImage)
-              blockCentral.append(blockContainer1,blockContainer2)
-              carpoolingSearch.append(blockCentral)
-              
-
-                  //code tester
+                  if(travelEco.value==="" && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
+                    screenBlock(element)
+                    return
                   }
+                  if(element.travelType===travelEco.value && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
+                  //code a tester ici
+                  screenBlock(element)
+                  return
+                  }
+                  if(element.price<=parseTravelPrice /*ajouter les autres conditions*/){
+                    screenBlock(element)
+                    return
+                  }
+                  
                 })
                 })
               }},150)
-
-             //test
             }
           });  
        }

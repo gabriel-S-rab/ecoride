@@ -2,6 +2,7 @@
 <form class="filterForm">
     <label class="filterElement" for="travelEco">voyage écologique ?</label>
     <select id="travelEco" name="travelEco">
+        <option value="">tous</option>
         <option value="oui">oui</option>
         <option value="non">non</option>
     </select>
