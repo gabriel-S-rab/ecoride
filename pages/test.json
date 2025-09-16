@@ -5,12 +5,13 @@
    "date" : "2025-08-15",
    "place": 1 , 
     "pseudo": "jose", 
-    "note": 8, 
+    "note": 4, 
     "price": 38, 
     "departureHour": "15h30", 
     "finishHour": "17h30", 
     "travelType": "oui",
-    "profilImage": "/image/image1.jpg"
+    "profilImage": "/image/image1.jpg",
+    "travelDuration" : 2
 },
 {
     "departureCity" : "paris",
@@ -18,12 +19,13 @@
    "date" : "2025-08-15",
    "place": 2 , 
     "pseudo": "jinnette", 
-    "note": 9, 
+    "note": 3, 
     "price": 42, 
     "departureHour": "15h30", 
     "finishHour": "17h30", 
     "travelType": "oui",
-    "profilImage": "/image/image1.jpg"
+    "profilImage": "/image/image1.jpg",
+    "travelDuration": 2
 },
 {
      "departureCity" : "paris",
@@ -31,12 +33,13 @@
    "date" : "2025-08-15",
    "place": 1 , 
     "pseudo": "john", 
-    "note": 8, 
+    "note": 5, 
     "price": 30, 
-    "departureHour": "15h30", 
+    "departureHour": "11h30", 
     "finishHour": "17h30", 
     "travelType": "non",
-    "profilImage": "/image/image1.jpg"
+    "profilImage": "/image/image1.jpg",
+    "travelDuration": 6
 },
 {
      "departureCity" : "paris",
@@ -44,12 +47,13 @@
    "date" : "2025-08-15",
    "place": 1 , 
     "pseudo": "jose", 
-    "note": 8, 
+    "note": 2, 
     "price": 20, 
-    "departureHour": "15h30", 
+    "departureHour": "16h30", 
     "finishHour": "17h30", 
     "travelType": "non",
-    "profilImage": "/image/image1.jpg"
+    "profilImage": "/image/image1.jpg",
+    "travelDuration": 1
 }, 
 {
      "departureCity" : "paris",
@@ -57,11 +61,12 @@
    "date" : "2025-08-15",
    "place": 1 , 
     "pseudo": "jose", 
-    "note": 8, 
+    "note": 1, 
     "price": 60, 
-    "departureHour": "15h30", 
+    "departureHour": "9h30", 
     "finishHour": "17h30", 
     "travelType": "non",
-    "profilImage": "/image/image1.jpg"
+    "profilImage": "/image/image1.jpg", 
+    "travelDuration":8
 }
 ]

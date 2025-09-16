@@ -11,7 +11,7 @@
     <label class="filterElement" for="travelDuration">durée du voyage :</label>
     <input class="filterElement inputForm" id="travelDuration" type="number" min="0" placeholder="durée du voyage">
     <label class="filterElement"for="driverNotation">note du chauffeur :</label>
-    <input class="filterElement inputForm" type="number" min="0" id="driverNotation" placeholder="notation du chauffeur">
+    <input class="filterElement inputForm" type="number" min="1" max="5" id="driverNotation" placeholder="notation du chauffeur">
     <button class="filterElement btnForm" type="button">appliquer</button>
 </form>
 
