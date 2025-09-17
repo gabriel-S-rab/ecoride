@@ -110,6 +110,11 @@ console.log(`je suis bien entrer dans la condition est ma valeur est ${travelEco
               carpoolingSearch.append(blockCentral)
 }
 
+//function pour gérer au cas ou il n'y a pas d'élement correspondant
+function filterNone(){
+
+}
+
 
 async function btnSearch(){
   return new Promise((resolve) => {
@@ -126,22 +131,17 @@ async function btnSearch(){
       let destination = document.querySelector(".destination").value; 
       let dateDeparture = document.querySelector(".dateDeparture").value;
       if(departure==="" || destination==="" || dateDeparture===""){
-        console.log("erreur")  //implémenter un élément pour gérer des champs vide ou mal rempli
+        alert("Veuillez remplir tout les champs.")
       }else {
       path=routes["/carpoolingSearch"]
       navigate(event,path,url);
       await afficher(path)
       select.selectedIndex=0
       utilisateur.forEach(element => {
-        
-
         if(departure===element.departureCity && destination===element.destination && dateDeparture===element.date){    
           screenBlock(element)
               }
              })
-              
-             
-             
               const filterInterval = setInterval(() => {
     
                 const btnForm = document.querySelector(".btnForm")
@@ -172,44 +172,38 @@ async function btnSearch(){
                 travelEco.selectIndex=0
                
                 utilisateur.forEach(element => {
-                
-          
                   if(travelEco.value==="" && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
-                    screenBlock(element)
-                    return
-                  }
-                  if(element.travelType===travelEco.value && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
-                  //code a tester ici
+                    screenBlock(element)  
+                  }if(element.travelType===travelEco.value && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
                   screenBlock(element)
-                  return
-                  }
-                  if(element.price<=parseTravelPrice && travelEco.value==="" && travelDuration.value==="" && driverNotation.value==="" /*ajouter les autres conditions*/){
-                    screenBlock(element)
-                    return
+                  }if(element.price<=parseTravelPrice && travelEco.value==="" && travelDuration.value==="" && driverNotation.value===""){
+                    screenBlock(element)  
                   }if(element.travelDuration<=travelDuration.value && travelEco.value==="" && driverNotation.value==="" && travelPrice.value===""){
                     screenBlock(element)
                   }if(element.note >= driverNotation.value && travelDuration.value==="" && travelEco.value==="" && travelPrice.value===""){// gérer au cas ou aucune note ne correspond et voir si parse 
-                    screenBlock(element)
-                    return
+                    screenBlock(element)  
                   }if(element.note >= driverNotation.value && element.price<=parseTravelPrice && element.travelDuration<=travelDuration.value && element.travelType===travelEco.value){//gérer au cas ou aucune correspondance est trouvé
-                    screenBlock(element)
-                    return
+                    screenBlock(element)  
                   }if(element.price<=travelPrice.value && element.travelType===travelEco.value && travelDuration.value==="" && driverNotation.value===""){
                     screenBlock(element)
                   }if(element.travelType===travelEco.value && element.travelDuration<=travelDuration.value && travelPrice.value==="" &&  driverNotation.value===""){
-                    screenBlock(element)
-                    return
+                    screenBlock(element)  
                   }if(element.travelType===travelEco.value && element.note>=driverNotation.value && travelDuration.value==="" && travelPrice.value===""){
                     screenBlock(element)
                   }if(element.price<=travelPrice.value && element.travelDuration<=travelDuration.value && travelEco.value==="" && driverNotation.value===""){
-                    screenBlock(element)
-                    return
+                    screenBlock(element)  
                   }if(element.price<=travelPrice.value && element.note>=driverNotation.value && travelDuration.value==="" && travelEco.value===""){
-                    screenBlock(element)
-                    return
+                    screenBlock(element)  
                   }if(element.travelDuration<=travelDuration.value && element.note>=driverNotation.value && travelEco.value==="" && travelPrice.value===""){
+                    screenBlock(element)  
+                  }if(element.travelType===travelEco.value && element.price<=travelPrice.value && element.travelDuration<=travelDuration.value && driverNotation.value===""){
                     screenBlock(element)
-                    return
+                  }if(element.travelType===travelEco.value && element.price<=travelPrice.value && element.note>=driverNotation.value && travelDuration.value===""){
+                    screenBlock(element)
+                  }if(element.travelType===travelEco.value && element.travelDuration<=travelDuration.value && element.note>=driverNotation.value && travelPrice.value===""){
+                    screenBlock(element)
+                  }if(element.Price<=travelPrice.value && element.travelDuration<=travelDuration.value && element.note>=driverNotation.value && travelEco.value===""){
+                    screenBlock(element)
                   }
                   
                 })
