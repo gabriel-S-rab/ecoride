@@ -199,6 +199,17 @@ async function btnSearch(){
                   }if(element.travelType===travelEco.value && element.travelDuration<=travelDuration.value && travelPrice.value==="" &&  driverNotation.value===""){
                     screenBlock(element)
                     return
+                  }if(element.travelType===travelEco.value && element.note>=driverNotation.value && travelDuration.value==="" && travelPrice.value===""){
+                    screenBlock(element)
+                  }if(element.price<=travelPrice.value && element.travelDuration<=travelDuration.value && travelEco.value==="" && driverNotation.value===""){
+                    screenBlock(element)
+                    return
+                  }if(element.price<=travelPrice.value && element.note>=driverNotation.value && travelDuration.value==="" && travelEco.value===""){
+                    screenBlock(element)
+                    return
+                  }if(element.travelDuration<=travelDuration.value && element.note>=driverNotation.value && travelEco.value==="" && travelPrice.value===""){
+                    screenBlock(element)
+                    return
                   }
                   
                 })
