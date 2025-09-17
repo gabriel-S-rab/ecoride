@@ -193,6 +193,12 @@ async function btnSearch(){
                     return
                   }if(element.note >= driverNotation.value && element.price<=parseTravelPrice && element.travelDuration<=travelDuration.value && element.travelType===travelEco.value){//gérer au cas ou aucune correspondance est trouvé
                     screenBlock(element)
+                    return
+                  }if(element.price<=travelPrice.value && element.travelType===travelEco.value && travelDuration.value==="" && driverNotation.value===""){
+                    screenBlock(element)
+                  }if(element.travelType===travelEco.value && element.travelDuration<=travelDuration.value && travelPrice.value==="" &&  driverNotation.value===""){
+                    screenBlock(element)
+                    return
                   }
                   
                 })
