@@ -164,11 +164,14 @@ async function btnSearch(){
               let  blockCentral=document.querySelector(".carpoolingSearch")
               let  carpoolingSearch=document.querySelector(".carpoolingSearchBlock")
               let parseTravelPrice = parseInt(travelPrice.value)
-
+              
+              
+              if(carpoolingSearch.innerHTML!==""){
                 blockContainer1.innerHTML=""
                 blockContainer2.innerHTML=""
                 blockCentral.innerHTML="" 
                 carpoolingSearch.innerHTML=""
+              }
                 travelEco.selectIndex=0
                
                 utilisateur.forEach(element => {

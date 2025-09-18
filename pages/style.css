@@ -305,8 +305,7 @@ width: 100%;
 .blockImage 
 {
     position:relative; /*test*/
-    object-fit: contain;
-    
+    object-fit: contain;   
 }
 .blockNote 
 {
