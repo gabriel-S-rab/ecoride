@@ -353,3 +353,17 @@ input[type="checkbox"]
 {
     height: 15px; 
 }
+
+.btnDetail
+{
+    margin-left: 20px;
+    margin-bottom:20px;
+    border:none; 
+    border-radius: 20px;
+    justify-items: center;
+    background-color: var(--primary_color);
+    color:white; 
+    font-weight: 600;
+    font-size: 20px; 
+    cursor: pointer;
+}

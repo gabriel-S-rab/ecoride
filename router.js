@@ -40,7 +40,7 @@ main.innerHTML = repAffich;
 
 //nouveau test de fonction
 function screenBlock(element){
-console.log(`je suis bien entrer dans la condition est ma valeur est ${travelEco.value}`)
+
                    let carpoolingSearch = document.querySelector(".carpoolingSearchBlock")
 
               let blockCentral = document.createElement("div")
@@ -111,8 +111,16 @@ console.log(`je suis bien entrer dans la condition est ma valeur est ${travelEco
 }
 
 //function pour gérer au cas ou il n'y a pas d'élement correspondant
-function filterNone(){
 
+
+ async function BtnDetail(){ //a finir de créer 
+let btnDetail = document.querySelector(".btnDetail")
+btnDetail.addEventListener("click", async () => {
+const avis = await fetch(/*ajouter les avis*/)
+avis.forEach(element => {
+  let driverBlock = document.querySelector("div")
+})
+})
 }
 
 
