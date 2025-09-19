@@ -22,7 +22,10 @@ let erreur;
 
 
 async function recovery(){
-   const reponse = await fetch("/pages/test.json",{cache : "no-store"}) 
+   const reponse = await fetch("http://localhost/carpooling-api/index.php",{
+    method : "GET", headers: {
+      "Content-Type": "application/json"
+    }}) 
    utilisateur = await reponse.json().then(Response => {
    return utilisateur =  Response
  })
@@ -55,39 +58,39 @@ function screenBlock(element){
           
               let blockDepartureCity = document.createElement("p")
               blockDepartureCity.setAttribute("class","blockDepartureCity")
-              blockDepartureCity.textContent ="ville de départ : "+element.departureCity
+              blockDepartureCity.textContent ="ville de départ : "+element.lieu_depart
               
               let blockDestination = document.createElement("p")
               blockDestination.setAttribute("class","blockDestination")
-              blockDestination.textContent = "ville de destination : "+element.destination
+              blockDestination.textContent = "ville de destination : "+element.lieu_arrivee
               
               let blockDateDeparture = document.createElement("p")
               blockDateDeparture.setAttribute("class","blockDateDeparture")
-              blockDateDeparture.textContent = "date de départ : "+element.date
+              blockDateDeparture.textContent = "date de départ : "+element.date_depart
              
               let blockDepartureHour = document.createElement("p")
               blockDepartureHour.setAttribute("class","blockDepartureHour")
-              blockDepartureHour.textContent = "heure de départ : "+element.departureHour
+              blockDepartureHour.textContent = "heure de départ : "+element.heure_depart
              
               let blockFinishHour = document.createElement("p")
               blockFinishHour.setAttribute("class","blockFinishHour")
-              blockFinishHour.textContent = "heure d'arrivée : "+ element.finishHour
+              blockFinishHour.textContent = "heure d'arrivée : "+ element.heure_arrivee
              
               let blockNumberPassenger = document.createElement("p")
               blockNumberPassenger.setAttribute("class","blockNumberPassenger")
-              blockNumberPassenger.textContent = "place disponible : "+element.place
+              blockNumberPassenger.textContent = "place disponible : "+element.nb_place
              
               let blockPrice = document.createElement("p")
               blockPrice.setAttribute("class","blockPrice")
-              blockPrice.textContent = "prix du voyage : "+element.price+" €"
+              blockPrice.textContent = "prix du voyage : "+element.prix_personne+" €"
               
               let blockTravelType = document.createElement("p")
               blockTravelType.setAttribute("class","blockTravelType")
-              blockTravelType.textContent = "voyage écologique : "+element.travelType
+              blockTravelType.textContent = "voyage écologique : "+element.statut
              
               let blockImage = document.createElement("img")
               blockImage.setAttribute("class","blockImage")
-              blockImage.setAttribute("src",`${element.profilImage}`)
+              blockImage.setAttribute("src",`${element.photo}`)
               blockImage.setAttribute("height","100px")
               blockImage.setAttribute("width","100px")
              
@@ -185,9 +188,9 @@ async function btnSearch(){
                 utilisateur.forEach(element => {
                   if(travelEco.value==="" && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
                     screenBlock(element)  
-                  }if(element.travelType===travelEco.value && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
+                  }if(element.statut===travelEco.value && travelPrice.value==="" && travelDuration.value==="" && driverNotation.value===""){
                   screenBlock(element)
-                  }if(element.price<=parseTravelPrice && travelEco.value==="" && travelDuration.value==="" && driverNotation.value===""){
+                  }if(element.prix_personne<=parseTravelPrice && travelEco.value==="" && travelDuration.value==="" && driverNotation.value===""){
                     screenBlock(element)  
                   }if(element.travelDuration<=travelDuration.value && travelEco.value==="" && driverNotation.value==="" && travelPrice.value===""){
                     screenBlock(element)
@@ -264,17 +267,17 @@ if(document.readyState==="complete"){
     let blockPseudo = document.createElement("p")
     blockPseudo.textContent = element.pseudo
     let blockPrice = document.createElement("p")
-    blockPrice.textContent = element.price 
+    blockPrice.textContent = element.prix_personne
     let blockDate = document.createElement("p")
-    blockDate.textContent = element.date
+    blockDate.textContent = element.date_depart
     let blockPlace = document.createElement("p")
-    blockPlace.textContent= element.place
+    blockPlace.textContent= element.nb_place
     let blockDepartureHour = document.createElement("p")
-    blockDepartureHour.textContent = element.departureHour
+    blockDepartureHour.textContent = element.heure_depart
     let blockFinishHour = document.createElement("p")
-    blockFinishHour.textContent = element.finishHour
+    blockFinishHour.textContent = element.heure_arrivee
     let blocktravelType = document.createElement("p")
-    blocktravelType.textContent = element.travelType
+    blocktravelType.textContent = element.statut
     globalBlock.append(blockPseudo)
     globalBlock.append(blockNote)
     globalBlock.append(blockPlace)
