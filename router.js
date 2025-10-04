@@ -7,7 +7,8 @@ const routes = {
   "/acceuil" : "/pages/acceuil.php",
   "/covoiturage" : "/pages/covoiturage.php",
   "/presentation" : "/pages/presentation.php",
-  "/carpoolingSearch": "/pages/carpoolingSearch.php"
+  "/carpoolingSearch": "/pages/carpoolingSearch.php",
+   "/detail" : "/pages/detail.php"
 }
 
 const url = window.location.origin; 
@@ -22,10 +23,7 @@ let erreur;
 
 
 async function recovery(){
-   const reponse = await fetch("http://localhost/carpooling-api/index.php",{
-    method : "GET", headers: {
-      "Content-Type": "application/json"
-    }}) 
+   const reponse = await fetch("/pages/test.json")
    utilisateur = await reponse.json().then(Response => {
    return utilisateur =  Response
  })
@@ -111,21 +109,48 @@ function screenBlock(element){
               blockContainer2.append(blockPseudo,blockNote,blockImage)
               blockCentral.append(blockContainer1,blockContainer2)
               carpoolingSearch.append(blockCentral)
+
+              detail(btnDetail,element)
 }
 
 //function pour gérer au cas ou il n'y a pas d'élement correspondant
 
 
- async function BtnDetail(){ //a finir de créer 
-let btnDetail = document.querySelector(".btnDetail")
-btnDetail.addEventListener("click", async () => {
-const avis = await fetch(/*ajouter les avis*/)
-avis.forEach(element => {
-  let driverBlock = document.querySelector("div")
-})
-})
-}
 
+
+function detail(btnDetail,element){
+  btnDetail.addEventListener("click", () => {
+    path=routes['/detail']
+    afficher(path).then( ok => {
+    navigate(event,path,url)
+    console.log(element)
+    // ajouter l'affichage des éléments
+    // function asynchrone pour récupérer les avis du conducteur
+    // function asynchrone pour récupérer le modéle et la marque du véhicule
+    // function asynchrone pour récupérer les préférence des conducteur
+
+    const  carpoolingSearch = document.querySelector(".carpoolingDetailBlock")
+    const elementblock = `
+                          <P>${element.pseudo}</p>
+                          <p>${element.Price}</p>
+                          <p>${element.departureCity}</p>
+                          <p>${element.departure}</p>
+                          <p>${element.date_depart}</p>
+                          <p>${element.pseudo}</p>
+                          <p>${element.pseudo}</p>
+                          <p>${element.pseudo}</p>
+                          <p>${element.pseudo}</p>
+                          <p>${element.pseudo}</p>
+                          <p>${element.pseudo}</p>
+                          ` // a compléter
+   carpoolingSearch.innerHTML = elementblock
+  
+  console.log(carpoolingSearch)
+  console.log(element.pseudo)
+
+    }) //element .then
+  })
+}
 
 async function btnSearch(){
   return new Promise((resolve) => {
