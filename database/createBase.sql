@@ -65,7 +65,7 @@ CREATE TABLE Configuration (
 CREATE TABLE Parametre (
     parametre_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     propriete VARCHAR(50) NOT NULL, 
-    valeur VARCHAR(50) NOT NULL
+    valeur VARCHAR(50) NOT NULL,
     FOREIGN KEY (parametre_id) REFERENCES Configuration(id_configuration)
 );
 
@@ -95,6 +95,4 @@ CREATE TABLE Covoiturage_utilisateur (
 
 
 
-
-/* creer toutes les table assiociative */
 
