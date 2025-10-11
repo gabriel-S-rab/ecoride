@@ -132,7 +132,7 @@ function detail(btnDetail,element){
     const  carpoolingSearch = document.querySelector(".carpoolingDetailBlock")
     const elementblock = `
                           <P>${element.pseudo}</p>
-                          <p>${element.Price}</p>
+                          <p>${element.avis}</p>
                           <p>${element.departureCity}</p>
                           <p>${element.departure}</p>
                           <p>${element.date_depart}</p>

@@ -11,7 +11,8 @@
     "finishHour": "17h30", 
     "travelType": "oui",
     "profilImage": "/image/image1.jpg",
-    "travelDuration" : 2
+    "travelDuration" : 2,
+    "avis":"super chauffeur"
 },
 {
     "departureCity" : "paris",
