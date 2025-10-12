@@ -3,7 +3,7 @@ function navigate(event,path,url){
   window.history.pushState({pages : path},"",fullUrl);
 }
 
-const routes = {
+const routes = { /* voir pour créer une class */
   "/acceuil" : "/pages/acceuil.php",
   "/covoiturage" : "/pages/covoiturage.php",
   "/presentation" : "/pages/presentation.php",
@@ -23,7 +23,7 @@ let erreur;
 
 
 async function recovery(){
-   const reponse = await fetch("/pages/test.json")
+   const reponse = await fetch("/carpooling-api/index.php")
    utilisateur = await reponse.json().then(Response => {
    return utilisateur =  Response
  })
@@ -173,8 +173,10 @@ async function btnSearch(){
       navigate(event,path,url);
       await afficher(path)
       select.selectedIndex=0
+      console.log(utilisateur)
       utilisateur.forEach(element => {
-        if(departure===element.departureCity && destination===element.destination && dateDeparture===element.date){    
+        if(departure===element.lieu_depart && destination===element.lieu_arrivee && dateDeparture===element.date_depart){    
+          console.log(element)
           screenBlock(element)
               }
              })
