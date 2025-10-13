@@ -8,7 +8,8 @@ const routes = { /* voir pour créer une class */
   "/covoiturage" : "/pages/covoiturage.php",
   "/presentation" : "/pages/presentation.php",
   "/carpoolingSearch": "/pages/carpoolingSearch.php",
-   "/detail" : "/pages/detail.php"
+   "/detail" : "/pages/detail.php", 
+   "/connexion" : "/pages/connexion.php"
 }
 
 const url = window.location.origin; 
@@ -319,6 +320,9 @@ if(document.readyState==="complete"){
 
 break; 
 case "/connexion" : 
+path = routes["/connexion"]
+navigate(event,path,url)
+afficher(path)
   // a implémenter
 break; 
 case "value4" : 
