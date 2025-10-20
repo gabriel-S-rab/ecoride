@@ -18,6 +18,7 @@
                 <option value="/acceuil">Accueil</option>
                 <option value="/covoiturage">Accés aux covoiturage</option>
                 <option value="/connexion">Connexion</option>
+                <option value="/inscription">Inscription</option>
                 <option value="/contact">Contact</option>
             </select>
             

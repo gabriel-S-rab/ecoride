@@ -9,7 +9,8 @@ const routes = { /* voir pour créer une class */
   "/presentation" : "/pages/presentation.php",
   "/carpoolingSearch": "/pages/carpoolingSearch.php",
    "/detail" : "/pages/detail.php", 
-   "/connexion" : "/pages/connexion.php"
+   "/connexion" : "/pages/connexion.php", 
+   "/inscription" : "/pages/inscription.php"
 }
 
 const url = window.location.origin; 
@@ -24,8 +25,14 @@ let erreur;
 
 
 async function recovery(){
-   const reponse = await fetch("/carpooling-api/index.php")
+  const filter = new FormData()
+  filter.append("data","globalFetch")
+   const reponse = await fetch("/carpooling-api/index.php",{
+   method : "POST",
+   body : filter
+   })
    utilisateur = await reponse.json().then(Response => {
+    console.log(utilisateur)
    return utilisateur =  Response
  })
 }
@@ -133,16 +140,16 @@ function detail(btnDetail,element){
     const  carpoolingSearch = document.querySelector(".carpoolingDetailBlock")
     const elementblock = `
                           <P>${element.pseudo}</p>
-                          <p>${element.avis}</p>
-                          <p>${element.departureCity}</p>
-                          <p>${element.departure}</p>
+                          <p>${element.lieu_depart}</p>
+                          <p>${element.lieu_arrivee}</p>
                           <p>${element.date_depart}</p>
-                          <p>${element.pseudo}</p>
-                          <p>${element.pseudo}</p>
-                          <p>${element.pseudo}</p>
-                          <p>${element.pseudo}</p>
-                          <p>${element.pseudo}</p>
-                          <p>${element.pseudo}</p>
+                          <p>${element.date_arrive}</p>
+                          <p>${element.nb_place}</p>
+                          <p>${element.prix_personne}</p>
+                          <p>${element.statut}</p>
+                          <p>${element.photo}</p>
+                          <p>${element.note}</p>
+                          <p>${element.commentaire}</p>
                           ` // a compléter
    carpoolingSearch.innerHTML = elementblock
   
@@ -323,9 +330,40 @@ case "/connexion" :
 path = routes["/connexion"]
 navigate(event,path,url)
 afficher(path)
+let btnInterval = setInterval(() => {
+let btnFormConnexion = document.querySelector(".btnFormConnexion")
+if(btnFormConnexion!== null){
+  clearInterval(btnInterval)
+btnFormConnexion.addEventListener("click", async () => {
+  let id = document.querySelector(".identifiant").value
+  let mdp = document.querySelector(".mdp").value
+  const formdata = new FormData()
+  formdata.append("data","connexion")
+  formdata.append("id",id)
+  formdata.append("mdp",mdp)
+  console.log(formdata)
+  const response = await fetch("/carpooling-api/index.php", 
+    {
+      method:"POST", 
+      body : formdata
+    }
+  )
+ console.log("ok")
+ let control = await response.json()
+  console.log(control)
+ if(control.test==="ok"){
+  console.log("ok")
+ }
+ 
+  })}
+},150)
+
   // a implémenter
 break; 
-case "value4" : 
+case "/inscription" : 
+path = routes["/inscription"]
+navigate(event,path,url)
+await afficher(path)
   // a implémenter 
 break; 
 default : 
