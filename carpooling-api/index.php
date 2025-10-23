@@ -32,10 +32,13 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             $result = $request->fetch(PDO::FETCH_ASSOC);
              if($id===$result["email"] && $mdp===$result["password"]){
                  
-                  echo json_encode([password_hash("test")=>"ok"]);
+                  echo json_encode(["test"=>"ok connexion"]);
              } 
              }
             }     
+            if($_POST["data"]==="inscription"){
+              echo json_encode(["test"=>"ok inscription"]);
+            }
       }
            
 

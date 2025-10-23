@@ -10,7 +10,8 @@ const routes = { /* voir pour créer une class */
   "/carpoolingSearch": "/pages/carpoolingSearch.php",
    "/detail" : "/pages/detail.php", 
    "/connexion" : "/pages/connexion.php", 
-   "/inscription" : "/pages/inscription.php"
+   "/inscription" : "/pages/inscription.php",
+   "/inscriptionVehicule" : "/pages/inscriptionVehicule.php"
 }
 
 const url = window.location.origin; 
@@ -364,6 +365,51 @@ case "/inscription" :
 path = routes["/inscription"]
 navigate(event,path,url)
 await afficher(path)
+let interval = setInterval(()=>{
+let prenom =  document.querySelector(".prenom")
+let nom = document.querySelector(".nom")
+let dateNaissance = document.querySelector(".dateNaissance")
+let adresse = document.querySelector(".adresse")
+let tel = document.querySelector(".tel")
+let btnInscription = document.querySelector(".btnInscription")
+let profilType = document.querySelector(".profilType")
+if(btnInscription){
+  clearInterval(interval)
+btnInscription.addEventListener('click', async () => {
+  console.log(prenom.value,nom.value,dateNaissance.value,adresse.value,tel.value,profilType)
+  const formData = new FormData()
+  formData.append("data","incription")
+  formData.append("prenom",prenom.value)
+  formData.append("nom",nom.value)
+  formData.append("dateNaissance",dateNaissance.value)
+  formData.append("adresse",adresse.value)
+  formData.append("tel",tel.value)
+/*
+  const response = await fetch("/carpooling-api/index.php", 
+    {
+    method : "POST", 
+    body : formData
+    })
+  let control = await response.json()
+  console.log(control)
+  if(control.test){
+    console.log(control.test)
+  }
+  */
+  if(profilType.value==="Utilisateur"){
+
+  }else if(profilType.value==="Covoitureur"){
+    path=routes["/inscriptionVehicule"]
+    navigate(event,path,url)
+    await afficher(path)
+  }
+})
+}
+},100)
+
+  
+
+
   // a implémenter 
 break; 
 default : 

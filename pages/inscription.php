@@ -10,6 +10,12 @@
     <input class="adresse" id="adresse" type="text" name="adresse" placeholder="entrez votre adresse">
     <label for="tel">entrez votre numéro de téléphone :</label>
     <input class="tel" id="tel" type="number" name="tel" placeholder="entre votre numero de telephone">
-    <button type="button">Valider</button>
+    <label for="profilType" title="peut etre modifier ultérieurement">type de profil :</label>
+    <select class="profilType" name="profiltype" title="peut étre modifier ultérieurement">
+        <option value="Utilisateur">Utilisateur</option>
+        <option value="Covoitureur">Covoitureur</option>
+    </select>
+    <button class="btnInscription" type="button">Valider</button>
+    
  </form>
 </div>

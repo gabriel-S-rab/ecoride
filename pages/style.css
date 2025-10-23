@@ -454,8 +454,8 @@ border-radius: 5px;
     align-items: center;
     margin: auto;
     border-radius: 20px;
-    height:70vh;
-    width:75vh; 
+    height:80vh;
+    width:85vh; 
     background-color: var(--primary_color);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
@@ -493,4 +493,68 @@ margin-top: 25px;
 .formInscription  button:hover 
 {
     background-color: #919e79;
+}
+
+.formInscription select
+{
+border: 1px solid black; 
+border-radius: 10px ;
+}
+
+/* inscription du véhicule */
+
+.formInscriptionVehicule 
+{
+    margin:auto;
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 20px;
+    height:80vh;
+    width:85vh; 
+    background-color: var(--primary_color);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.formInscriptionVehicule  input 
+{
+    display:inline-block; 
+    border:none;  
+    margin-top: 10px;
+    height: 4vh;
+    width:30vh;
+}
+
+.formInscriptionVehicule  label 
+{
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.formInscriptionVehicule  button
+{
+height:3vh; 
+width:15vw; 
+border:none; 
+cursor: pointer;
+background-color: var(--third_color);
+font-size: 18px;
+font-family: Arial, Helvetica, sans-serif;
+border-radius: 5px;
+margin-top: 25px;
+}
+
+.formInscriptionVehicule  button:hover 
+{
+    background-color: #919e79;
+}
+
+.formInscription select
+{
+border: 1px solid black; 
+border-radius: 10px ;
 }
