@@ -30,10 +30,12 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             $request->bindParam(":password",$mdp,PDO::PARAM_STR);
             $request->execute();
             $result = $request->fetch(PDO::FETCH_ASSOC);
+            if(count($result)>0){
              if($id===$result["email"] && $mdp===$result["password"]){
                  
-                  echo json_encode(["test"=>"ok connexion"]);
-             } 
+                  echo json_encode(["test"=>"ok connexion","id"=>$id]);
+             }
+             }
              }
             }     
             if($_POST["data"]==="inscription"){

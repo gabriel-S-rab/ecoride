@@ -123,7 +123,19 @@ function screenBlock(element){
 }
 
 //function pour gérer au cas ou il n'y a pas d'élement correspondant
-
+function gestionAffichage(){
+  if(sessionStorage.getItem("id")!== null){
+  let inscription = document.querySelector(".inscription")
+  let connexion = document.querySelector(".connexion")
+  let monProfil = document.querySelector(".monProfil")
+  let deconnexion = document.querySelector(".deconnexion")
+  inscription.setAttribute("hidden","")
+  connexion.setAttribute("hidden","")
+  monProfil.removeAttribute("hidden")
+  deconnexion.removeAttribute("hidden")
+}
+}
+gestionAffichage()
 
 
 
@@ -352,8 +364,19 @@ btnFormConnexion.addEventListener("click", async () => {
  console.log("ok")
  let control = await response.json()
   console.log(control)
- if(control.test==="ok"){
+ if(control.test==="ok connexion"){
   console.log("ok")
+  if(control.id){
+  sessionStorage.setItem("id",`${control.id}`)
+  let inscription = document.querySelector(".inscription")
+  let connexion = document.querySelector(".connexion")
+  inscription.setAttribute("hidden","")
+  connexion.setAttribute("hidden","")
+  console.log(inscription)
+  console.log(connexion)
+  location.replace("http://localhost/")
+  alert("vous étes bien connecté !")
+  }
  }
  
   })}
@@ -412,6 +435,12 @@ btnInscription.addEventListener('click', async () => {
 
   // a implémenter 
 break; 
+case "deconnexion" : 
+let deconnexion = document.querySelector(".deconnexion")
+sessionStorage.removeItem("id")
+location.replace("http://localhost/")
+alert("vous étes bien deconnecté !")
+break;
 default : 
   console.log("pas de valeur entré"); 
   // a implémenter
