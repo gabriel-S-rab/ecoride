@@ -396,6 +396,9 @@ let adresse = document.querySelector(".adresse")
 let tel = document.querySelector(".tel")
 let btnInscription = document.querySelector(".btnInscription")
 let profilType = document.querySelector(".profilType")
+let pseudo = document.querySelector(".pseudo")
+let email = document.querySelector(".email") 
+let mdp = document.querySelector(".inputmdp")
 if(btnInscription){
   clearInterval(interval)
 btnInscription.addEventListener('click', async () => {
@@ -407,15 +410,18 @@ btnInscription.addEventListener('click', async () => {
   formData.append("dateNaissance",dateNaissance.value)
   formData.append("adresse",adresse.value)
   formData.append("tel",tel.value)
+  formData.append("pseudo",pseudo.value)
+  formData.append("email",email.value)
+  formData.append("mdp",mdp.value)
   const response = await fetch("/carpooling-api/index.php", 
     {
     method : "POST", 
     body : formData
     })
      let control = await response.json() 
-    console.log(control)
-      if(control.test){
-    console.log(control.test)
+      if(control.inscription==="ok"){
+    alert("inscription réussie ! vous pouvez vous connecter.")
+    location.replace("http://localhost/")
   }
   if(profilType.value==="Utilisateur"){
 

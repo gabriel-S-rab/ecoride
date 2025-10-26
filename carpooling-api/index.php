@@ -1,5 +1,5 @@
 <?php 
-
+// prévoir un systéme d'authentification exemple type "JWT authentification"
 
 header("Content-Type: application/json"); 
 
@@ -18,8 +18,9 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             $result=$request->fetchAll(PDO::FETCH_ASSOC);
             $result_encode = json_encode($result);
             echo $result_encode;
+            exit();
            }
-           }
+     
            if($_POST["data"]==="connexion"){
             if(isset($_POST["id"])){
              if(isset($_POST["mdp"])){
@@ -34,20 +35,38 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
              if($id===$result["email"] && $mdp===$result["password"]){
                  
                   echo json_encode(["test"=>"ok connexion","id"=>$id]);
+                  exit();
              }
              }
              }
             }}    
             if($_POST["data"]==="inscription"){
-              echo json_encode(["test"=>"ok inscription"]);
               $prenom = htmlspecialchars($_POST["prenom"]);
               $nom = htmlspecialchars($_POST["nom"]); 
               $datenaissance = htmlspecialchars($_POST["dateNaissance"]); 
+              $pseudo = htmlspecialchars($_POST["pseudo"]); 
+              $email = htmlspecialchars($_POST["email"]); 
+              $mdp = htmlspecialchars($_POST["mdp"]);
+             // $confirmdp = htmlspecialchars($_POST["confirmmdp"]);
+             // $profilType = htmlspecialchars($_POST["profilType"]); 
+              $tel = htmlspecialchars($_POST["tel"]); 
+              $adresse = htmlspecialchars($_POST["adresse"]);
               /* a finir d'implémenter */
-              $requete=$connexion->prepare("INSERT INTO");
+              $requete=$connexion->prepare("INSERT INTO Utilisateur(nom,prenom,email,password,telephone,adresse,date_naissance,pseudo)
+               VALUES (:nom,:prenom,:email,:password,:telephone,:adresse,:date_naissance,:pseudo)");
+              $requete->bindParam(":nom",$nom,PDO::PARAM_STR); 
+              $requete->bindParam(":prenom",$prenom,PDO::PARAM_STR); 
+              $requete->bindParam(":email",$email,PDO::PARAM_STR); 
+              $requete->bindParam(":password",$mdp,PDO::PARAM_STR); 
+              $requete->bindParam(":telephone",$tel,PDO::PARAM_INT); 
+              $requete->bindParam(":adresse",$adresse,PDO::PARAM_STR); 
+              $requete->bindParam(":date_naissance",$datenaissance); 
+              $requete->bindParam(":pseudo",$pseudo,PDO::PARAM_STR); 
+              $requete->execute();
+              echo json_encode(["inscription"=>"ok"]); 
+              exit();
             }
-      
-           
+          }
 
 
 
