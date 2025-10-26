@@ -437,6 +437,7 @@ border-radius: 5px;
 
 .connexContainer 
 {
+    margin-top: 20px;
     height: 100vh; 
     width:100vw;
     align-content: center;
@@ -454,8 +455,8 @@ border-radius: 5px;
     align-items: center;
     margin: auto;
     border-radius: 20px;
-    height:80vh;
-    width:85vh; 
+    height:100vh;
+    width:75vw; 
     background-color: var(--primary_color);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
@@ -487,7 +488,7 @@ background-color: var(--third_color);
 font-size: 18px;
 font-family: Arial, Helvetica, sans-serif;
 border-radius: 5px;
-margin-top: 25px;
+margin-top: 15px;
 }
 
 .formInscription  button:hover 
@@ -499,6 +500,14 @@ margin-top: 25px;
 {
 border: 1px solid black; 
 border-radius: 10px ;
+margin-top: 10px;
+font-size: 1.1rem;
+}
+
+.buttonBotom 
+{
+height:20px;
+width: 100%;
 }
 
 /* inscription du véhicule */

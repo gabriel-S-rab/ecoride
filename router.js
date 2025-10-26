@@ -401,31 +401,30 @@ if(btnInscription){
 btnInscription.addEventListener('click', async () => {
   console.log(prenom.value,nom.value,dateNaissance.value,adresse.value,tel.value,profilType)
   const formData = new FormData()
-  formData.append("data","incription")
+  formData.append("data","inscription")
   formData.append("prenom",prenom.value)
   formData.append("nom",nom.value)
   formData.append("dateNaissance",dateNaissance.value)
   formData.append("adresse",adresse.value)
   formData.append("tel",tel.value)
-/*
   const response = await fetch("/carpooling-api/index.php", 
     {
     method : "POST", 
     body : formData
     })
-  let control = await response.json()
-  console.log(control)
-  if(control.test){
+     let control = await response.json() 
+    console.log(control)
+      if(control.test){
     console.log(control.test)
   }
-  */
   if(profilType.value==="Utilisateur"){
 
   }else if(profilType.value==="Covoitureur"){
     path=routes["/inscriptionVehicule"]
     navigate(event,path,url)
-    await afficher(path)
+    afficher(path)
   }
+    
 })
 }
 },100)

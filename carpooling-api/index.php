@@ -37,11 +37,16 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
              }
              }
              }
-            }     
+            }}    
             if($_POST["data"]==="inscription"){
               echo json_encode(["test"=>"ok inscription"]);
+              $prenom = htmlspecialchars($_POST["prenom"]);
+              $nom = htmlspecialchars($_POST["nom"]); 
+              $datenaissance = htmlspecialchars($_POST["dateNaissance"]); 
+              /* a finir d'implémenter */
+              $requete=$connexion->prepare("INSERT INTO");
             }
-      }
+      
            
 
 
