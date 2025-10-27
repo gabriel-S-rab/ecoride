@@ -419,16 +419,48 @@ btnInscription.addEventListener('click', async () => {
     body : formData
     })
      let control = await response.json() 
-      if(control.inscription==="ok"){
+
+   if(profilType.value==="Covoitureur"){
+     path=routes["/inscriptionVehicule"]
+     navigate(event,path,url)
+     afficher(path)
+     const interval = setInterval(() => {
+     const marque = document.querySelector(".marque")
+     const modele = document.querySelector(".modele")
+     const dateMiseEnCirculation = document.querySelector(".dateMiseEnCirculation")
+     const couleur = document.querySelector(".couleur")
+     const immatriculation = document.querySelector(".immatriculation")
+     const typeVehicule = document.querySelector(".typeVehicule")
+     const btnInscription = document.querySelector(".btnInscription")
+     if(btnInscription){
+      console.log(marque,modele,dateMiseEnCirculation,couleur,immatriculation,typeVehicule,btnInscription)
+      clearInterval(interval)
+      btnInscription.addEventListener("click",async () => {
+        const formData = new FormData()
+        formData.append("data","inscriptionVehicule") 
+        formData.append("marque",marque.value)
+        formData.append("modele",modele.value)
+        formData.append("datemiseencirculation",dateMiseEnCirculation.value)
+        formData.append("couleur",couleur.value)
+        formData.append("immatriculation",immatriculation)
+        formData.append("typeVehicule",typeVehicule)
+        const response = await fetch("/carpooling-api/index.php",
+          {
+            method : "POST",
+            body : formData
+          })
+          const control = await response.json() // a verifier si "control" ne rentre pas en conflit
+          if(control.ok==="ok"){
+            console.log("l'opération a réussi")
+          }
+      })
+     }
+     },100)
+   }if(profilType.value==="Utilisateur") {
+     if(control.inscription==="ok"){
     alert("inscription réussie ! vous pouvez vous connecter.")
     location.replace("http://localhost/")
   }
-  if(profilType.value==="Utilisateur"){
-
-  }else if(profilType.value==="Covoitureur"){
-    path=routes["/inscriptionVehicule"]
-    navigate(event,path,url)
-    afficher(path)
   }
     
 })

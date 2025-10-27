@@ -63,7 +63,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requete->bindParam(":date_naissance",$datenaissance); 
               $requete->bindParam(":pseudo",$pseudo,PDO::PARAM_STR); 
               $requete->execute();
-              echo json_encode(["inscription"=>"ok"]); 
+              echo json_encode(["inscription"=>"ok",]);// verifier le probléme des echo 
+              if($_POST["data"]="inscriptionVehicule"){
+                echo json_encode(["ok"=>"ok"]);
+              }
               exit();
             }
           }
