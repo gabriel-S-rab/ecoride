@@ -424,7 +424,7 @@ btnInscription.addEventListener('click', async () => {
      path=routes["/inscriptionVehicule"]
      navigate(event,path,url)
      afficher(path)
-     const interval = setInterval(() => {
+     const interval = setInterval( () => { 
      const marque = document.querySelector(".marque")
      const modele = document.querySelector(".modele")
      const dateMiseEnCirculation = document.querySelector(".dateMiseEnCirculation")
@@ -442,15 +442,15 @@ btnInscription.addEventListener('click', async () => {
         formData.append("modele",modele.value)
         formData.append("datemiseencirculation",dateMiseEnCirculation.value)
         formData.append("couleur",couleur.value)
-        formData.append("immatriculation",immatriculation)
-        formData.append("typeVehicule",typeVehicule)
+        formData.append("immatriculation",immatriculation.value)
+        formData.append("typeVehicule",typeVehicule.value)
         const response = await fetch("/carpooling-api/index.php",
           {
             method : "POST",
             body : formData
           })
-          const control = await response.json() // a verifier si "control" ne rentre pas en conflit
-          if(control.ok==="ok"){
+          const confirm = await response.json() 
+          if(confirm.ok==="ok"){
             console.log("l'opération a réussi")
           }
       })

@@ -63,9 +63,25 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requete->bindParam(":date_naissance",$datenaissance); 
               $requete->bindParam(":pseudo",$pseudo,PDO::PARAM_STR); 
               $requete->execute();
-              echo json_encode(["inscription"=>"ok",]);// verifier le probléme des echo 
-              if($_POST["data"]="inscriptionVehicule"){
-                echo json_encode(["ok"=>"ok"]);
+              echo json_encode(["inscription"=>"ok"]);// verifier le probléme des echo 
+              if($_POST["data"]==="inscriptionVehicule"){
+                
+                $marque=htmlspecialchars($_POST["marque"]);
+                $modele=htmlspecialchars($_POST["modele"]);
+                $datemiseencirculation=htmlspecialchars($_POST["datemiseencirculation"]);
+                $couleur = htmlspecialchars($_POST["couleur"]);
+                $immatriculation = htmlspecialchars($_POST["immatriculation"]);
+                $typeVehicule = htmlspecialchars($_POST["typeVehicule"]);
+                $ajoutVehicule=$connexion->prepare("INSERT INTO voiture(modele,immatriculation,energie,couleur,date_premiere_immatriculation)
+                                                    VALUES (:modele,:immatriculation,:energie,:couleur,:date_premiere_immatriculation)");
+                $ajoutVehicule->bindParam(":modele",$modele,PDO::PARAM_STR);
+                $ajoutVehicule->bindParam(":immatriculation",$immatriculation,PDO::PARAM_STR); 
+                $ajoutVehicule->bindParam(":energie",$typeVehicule,PDO::PARAM_STR); 
+                $ajoutVehicule->bindParam(":couleur",$couleur,PDO::PARAM_STR); 
+                $ajoutVehicule->bindParam(":date_premiere_immatriculation",$datemiseencirculation); 
+                if($ajoutVehicule->execute()){
+                  echo json_encode(["confirmVehicule"=>"confirmok"]);
+                }
               }
               exit();
             }

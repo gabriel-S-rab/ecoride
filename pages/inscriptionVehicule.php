@@ -4,7 +4,7 @@
     <label for="marque">entrez la marque de votre vehicule :</label>
     <input class="marque" id="marque" type="text" name="marque" placeholder="entrez la marque de votre vehicule">
     <label for="modele">entrez le modéle de votre vehicule :</label>
-    <input class="modéle" id="modéle" type="text" name="modéle" placeholder="entrez le modéle de votre véhicule">
+    <input class="modele" id="modele" type="text" name="modele" placeholder="entrez le modéle de votre véhicule">
     <label for="dateMiseEnCirculation">entrez la date de mise en circulation :</label>
     <input class="dateMiseEnCirculation" id="dateMiseEnCirculation" type="date" name="dateMiseEnCirulation" placeholder="entrez la date de lmise en circulation">
     <label for="couleur">entrez la couleur du vehicule :</label>
