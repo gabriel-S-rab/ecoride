@@ -419,6 +419,9 @@ btnInscription.addEventListener('click', async () => {
     body : formData
     })
      let control = await response.json() 
+     if(control.id){
+      console.log(control.id)
+     }
 
    if(profilType.value==="Covoitureur"){
      path=routes["/inscriptionVehicule"]
@@ -438,6 +441,8 @@ btnInscription.addEventListener('click', async () => {
       btnInscription.addEventListener("click",async () => {
         const formData = new FormData()
         formData.append("data","inscriptionVehicule") 
+       // formData.append("id",id)
+       // console.log(id)
         formData.append("marque",marque.value)
         formData.append("modele",modele.value)
         formData.append("datemiseencirculation",dateMiseEnCirculation.value)
@@ -450,7 +455,7 @@ btnInscription.addEventListener('click', async () => {
             body : formData
           })
           const confirm = await response.json() 
-          if(confirm.ok==="ok"){
+          if(confirm.confirmVehicule==="confirmok"){
             console.log("l'opération a réussi")
           }
       })
