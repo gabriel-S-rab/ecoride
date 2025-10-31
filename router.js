@@ -11,7 +11,8 @@ const routes = { /* voir pour créer une class */
    "/detail" : "/pages/detail.php", 
    "/connexion" : "/pages/connexion.php", 
    "/inscription" : "/pages/inscription.php",
-   "/inscriptionVehicule" : "/pages/inscriptionVehicule.php"
+   "/inscriptionVehicule" : "/pages/inscriptionVehicule.php",
+   "/monProfil" : "/pages/monProfil.php"
 }
 
 const url = window.location.origin; 
@@ -284,7 +285,7 @@ if(window.location.href===url+'/'){
   afficher(path);
 }
   
-
+console.log(utilisateur)
 
 
 select.addEventListener("change", async (event) => {
@@ -348,11 +349,11 @@ let btnFormConnexion = document.querySelector(".btnFormConnexion")
 if(btnFormConnexion!== null){
   clearInterval(btnInterval)
 btnFormConnexion.addEventListener("click", async () => {
-  let id = document.querySelector(".identifiant").value
+  let identifiant = document.querySelector(".identifiant").value
   let mdp = document.querySelector(".mdp").value
   const formdata = new FormData()
   formdata.append("data","connexion")
-  formdata.append("id",id)
+  formdata.append("id",identifiant)
   formdata.append("mdp",mdp)
   console.log(formdata)
   const response = await fetch("/carpooling-api/index.php", 
@@ -368,14 +369,18 @@ btnFormConnexion.addEventListener("click", async () => {
   console.log("ok")
   if(control.id){
   sessionStorage.setItem("id",`${control.id}`)
+   path=routes["/presentation"]
+  navigate(event,path,url)
+  afficher(path)
+  alert("vous étes bien connecté !")
   let inscription = document.querySelector(".inscription")
   let connexion = document.querySelector(".connexion")
   inscription.setAttribute("hidden","")
   connexion.setAttribute("hidden","")
+  gestionAffichage() 
   console.log(inscription)
   console.log(connexion)
-  location.replace("http://localhost/")
-  alert("vous étes bien connecté !")
+ 
   }
  }
  
@@ -421,8 +426,9 @@ btnInscription.addEventListener('click', async () => {
      let control = await response.json() 
      if(control.id){
       console.log(control.id)
+    //  sessionStorage.setItem("id",id)
      }
-
+     
    if(profilType.value==="Covoitureur"){
      path=routes["/inscriptionVehicule"]
      navigate(event,path,url)
@@ -441,8 +447,11 @@ btnInscription.addEventListener('click', async () => {
       btnInscription.addEventListener("click",async () => {
         const formData = new FormData()
         formData.append("data","inscriptionVehicule") 
+        console.log(control.id) // utiliser control.id
        // formData.append("id",id)
        // console.log(id)
+        let id = control.id
+        formData.append("id",id)
         formData.append("marque",marque.value)
         formData.append("modele",modele.value)
         formData.append("datemiseencirculation",dateMiseEnCirculation.value)
@@ -457,6 +466,10 @@ btnInscription.addEventListener('click', async () => {
           const confirm = await response.json() 
           if(confirm.confirmVehicule==="confirmok"){
             console.log("l'opération a réussi")
+            alert("vous étes bien inscrit !")
+            path=routes["/presentation"]
+            navigate(event,path,url)
+            afficher(path)
           }
       })
      }
@@ -464,19 +477,25 @@ btnInscription.addEventListener('click', async () => {
    }if(profilType.value==="Utilisateur") {
      if(control.inscription==="ok"){
     alert("inscription réussie ! vous pouvez vous connecter.")
-    location.replace("http://localhost/")
+   // location.replace("http://localhost/")
+   navigate(event,path,url,)
+   path = routes["/presentation"]
+   afficher(path)
   }
   }
-    
-})
+  })
 }
 },100)
 
   
-
-
   // a implémenter 
 break; 
+case "/monProfil" : 
+path=routes["/monProfil"]
+navigate(event,path,url)
+
+// implémenter
+break;
 case "deconnexion" : 
 let deconnexion = document.querySelector(".deconnexion")
 sessionStorage.removeItem("id")

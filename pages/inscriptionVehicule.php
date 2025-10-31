@@ -1,4 +1,4 @@
-<p>je suis bien sur la pages pour les inscription de véhicule</p>
+
 <div class="connexContainer">
 <form  class="formInscriptionVehicule" action="">
     <label for="marque">entrez la marque de votre vehicule :</label>

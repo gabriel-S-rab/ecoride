@@ -11,14 +11,13 @@ $connexion= new PDO("mysql:host=localhost;dbname=Covoiturage_db;charset=UTF8","r
     
 if($_SERVER["REQUEST_METHOD"]==="POST"){
       if($_POST["data"]==="globalFetch"){
-      $sql ="SELECT * FROM Utilisateur
-             INNER JOIN covoiturage ON Utilisateur.utilisateur_id = covoiturage.covoiturage_id ";
+      $sql ="SELECT * FROM covoiturage";
             $request=$connexion->prepare($sql); 
             $request->execute(); 
             $result=$request->fetchAll(PDO::FETCH_ASSOC);
             $result_encode = json_encode($result);
             echo $result_encode;
-            exit();
+           // exit();
            }
      
            if($_POST["data"]==="connexion"){
@@ -67,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               echo json_encode(["inscription"=>"ok","id"=>$id]);// verifier le probléme des echo 
             }
               if($_POST["data"]==="inscriptionVehicule"){
-               // $id=htmlspecialchars($_POST["id"]);
+                $id=htmlspecialchars($_POST["id"]);
                 $marque=htmlspecialchars($_POST["marque"]);
                 $modele=htmlspecialchars($_POST["modele"]);
                 $datemiseencirculation=htmlspecialchars($_POST["datemiseencirculation"]);
@@ -75,9 +74,9 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
                 $immatriculation = htmlspecialchars($_POST["immatriculation"]);
                 $typeVehicule = htmlspecialchars($_POST["typeVehicule"]);
                 
-                $ajoutVehicule=$connexion->prepare("INSERT INTO voiture(/*voiture_id,*/modele,immatriculation,energie,couleur,date_premiere_immatriculation)
-                                                    VALUES (/*:voiture_id,*/:modele,:immatriculation,:energie,:couleur,:date_premiere_immatriculation)");
-              //  $ajoutVehicule->bindParam(":voiture_id",$id,PDO::PARAM_INT);                                 
+                $ajoutVehicule=$connexion->prepare("INSERT INTO voiture(voiture_id,modele,immatriculation,energie,couleur,date_premiere_immatriculation)
+                                                    VALUES (:voiture_id,:modele,:immatriculation,:energie,:couleur,:date_premiere_immatriculation)");
+                $ajoutVehicule->bindParam(":voiture_id",$id,PDO::PARAM_INT);                                 
                 $ajoutVehicule->bindParam(":modele",$modele,PDO::PARAM_STR);
                 $ajoutVehicule->bindParam(":immatriculation",$immatriculation,PDO::PARAM_STR); 
                 $ajoutVehicule->bindParam(":energie",$typeVehicule,PDO::PARAM_STR); 
@@ -89,6 +88,9 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
                 
               }
               exit();
+            if($_POST["data"==="myProfil"]){
+              
+            }
             }
           
 
