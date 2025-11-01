@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             $result=$request->fetchAll(PDO::FETCH_ASSOC);
             $result_encode = json_encode($result);
             echo $result_encode;
-           // exit();
+            exit(); // a voir
            }
      
            if($_POST["data"]==="connexion"){
@@ -85,11 +85,19 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
                 $ajoutVehicule->execute();
                 
                   echo json_encode(["confirmVehicule"=>"confirmok"]);
-                
+                exit();
               }
-              exit();
-            if($_POST["data"==="myProfil"]){
               
+            if($_POST["data"]==="myProfil"){
+              
+              $RecupInfoProfil = $connexion->prepare('SELECT * FROM utilisateur WHERE email="robert"'); 
+            //  $RecupInfoProfil->bindParam(":id",$id,PDO::PARAM_INT);
+              $RecupInfoProfil->execute();
+              $infoProfil= $RecupInfoProfil->fetch(PDO::FETCH_ASSOC); 
+              
+             
+              echo json_encode($infoProfil);
+              exit();
             }
             }
           

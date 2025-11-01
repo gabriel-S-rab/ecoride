@@ -493,6 +493,29 @@ break;
 case "/monProfil" : 
 path=routes["/monProfil"]
 navigate(event,path,url)
+afficher(path)
+const formData = new FormData()
+formData.append("data","myProfil")
+const response = await fetch("/carpooling-api/index.php", 
+  {
+    method : "POST",
+    body : formData
+  }
+)
+const infoProfil = await response.json()
+if(infoProfil){
+  // récupérer le id via session.storage
+  console.log("j'ai bien récupérer les info du profil")
+  console.log(infoProfil)
+  const email = infoProfil.email 
+  const nom = infoProfil.nom 
+  const prenom = infoProfil.prenom 
+  const dateNaissance = infoProfil.date_naissance
+  const adresse = infoProfil.adresse 
+  const tel = infoProfil.telephone
+  console.log(email,nom,prenom,dateNaissance,adresse,tel)
+  
+}
 
 // implémenter
 break;
