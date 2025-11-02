@@ -426,7 +426,7 @@ cursor: pointer;
 background-color: var(--third_color);
 font-size: 18px;
 font-family: Arial, Helvetica, sans-serif;
-margin-top: 10px;
+margin-top: 5px;
 border-radius: 5px;
 }
 
@@ -567,3 +567,88 @@ margin-top: 25px;
 border: 1px solid black; 
 border-radius: 10px ;
 }
+
+/* affichage element profil */ 
+.element 
+{
+    text-align: center;
+    border-radius: 20px;
+    width: 50vw;
+    margin: auto;
+    margin-top: 45px;
+    background-color: var(--primary_color);
+    padding:25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    font-size: 18px;
+}
+
+ .affich 
+ {
+    height:150vh;
+    width: 100vw;
+    text-align: center;
+ }
+
+ .element button 
+ {
+    cursor: pointer;
+    border:none; 
+    background-color: var(--third_color);
+    height: 4vh;
+    width:15vh;
+    font-size: 18px;
+    border-radius: 5px;
+    font-size: 18px;
+ }
+
+ .element button:hover 
+ {
+    background-color: #919e79;
+ }
+
+ .element input 
+ {
+    height: 4vh;
+    width:30vh;
+    border:none;
+    background-color:#e0e0e0;
+ }
+
+ .element input:hover 
+ {
+    background-color: white;
+ }
+
+ .btnChangementVehicule 
+ {
+    text-align: center;
+    align-content: center;
+    cursor: pointer;
+    border:none; 
+    background-color: var(--third_color);
+    height: 4vh;
+    width:35vh;
+    font-size: 18px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 45px;
+ }
+
+ .btnChangementVehicule:hover
+ {
+  background-color: #919e79;
+ }
+
+ .mdp,.confirmMdp 
+ {
+    display: block;
+    justify-items: center;
+    margin: auto;
+    margin-top: 15px;
+ }
+
+ .btnValidateMdp 
+ {
+    margin-top: 15px;
+ }

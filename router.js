@@ -353,7 +353,7 @@ btnFormConnexion.addEventListener("click", async () => {
   let mdp = document.querySelector(".mdp").value
   const formdata = new FormData()
   formdata.append("data","connexion")
-  formdata.append("id",identifiant)
+  formdata.append("identifiant",identifiant)
   formdata.append("mdp",mdp)
   console.log(formdata)
   const response = await fetch("/carpooling-api/index.php", 
@@ -367,6 +367,7 @@ btnFormConnexion.addEventListener("click", async () => {
   console.log(control)
  if(control.test==="ok connexion"){
   console.log("ok")
+  console.log(control.id)
   if(control.id){
   sessionStorage.setItem("id",`${control.id}`)
    path=routes["/presentation"]
@@ -505,16 +506,112 @@ const response = await fetch("/carpooling-api/index.php",
 const infoProfil = await response.json()
 if(infoProfil){
   // récupérer le id via session.storage
-  console.log("j'ai bien récupérer les info du profil")
-  console.log(infoProfil)
+  const interval = setInterval(()=> {
+    const element = document.querySelector(".element")
+    if(element){
+      console.log(element)
+      clearInterval(interval)
+      console.log(infoProfil)
   const email = infoProfil.email 
   const nom = infoProfil.nom 
   const prenom = infoProfil.prenom 
   const dateNaissance = infoProfil.date_naissance
   const adresse = infoProfil.adresse 
   const tel = infoProfil.telephone
+  const pseudo = infoProfil.pseudo
   console.log(email,nom,prenom,dateNaissance,adresse,tel)
-  
+  // affichage pseudo
+const pseudoProfil = document.createElement("p")
+pseudoProfil.setAttribute("class","pseudo") 
+pseudoProfil.textContent = `votre pseudo : ${pseudo}`
+const modifPseudo = document.createElement("input")
+modifPseudo.setAttribute("type","text")
+modifPseudo.setAttribute("placeholder","modifier votre pseudo")
+const btnModifPseudo = document.createElement("button")
+btnModifPseudo.setAttribute("type","button")
+btnModifPseudo.setAttribute("class","btnModifPseudo")
+btnModifPseudo.textContent = "modifier"
+element.append(pseudoProfil,modifPseudo,btnModifPseudo)
+// affichage nom
+const nomProfil = document.createElement("p")
+nomProfil.textContent = `votre nom : ${nom}`
+nomProfil.setAttribute("class","nom") 
+const modifNom = document.createElement("input")
+modifNom.setAttribute("type","text") 
+modifNom.setAttribute("placeholder","modifier votre nom")
+const btnModifNom = document.createElement("button")
+btnModifNom.setAttribute("type","button")
+btnModifNom.textContent = "modifier" 
+element.append(nomProfil,modifNom,btnModifNom)
+// affichage prenom
+const prenomProfil = document.createElement("p")
+prenomProfil.textContent = `votre prenom : ${prenom}`
+prenomProfil.setAttribute("class","prenom") 
+const modifPrenom = document.createElement("input")
+modifPrenom.setAttribute("type","text") 
+modifPrenom.setAttribute("placeholder","modifier votre prenom")
+const btnModifprenom = document.createElement("button")
+btnModifprenom.setAttribute("type","button")
+btnModifprenom.textContent = "modifier" 
+element.append(prenomProfil,modifPrenom,btnModifprenom)
+// affichage de l'email
+const emailProfil = document.createElement("p")
+emailProfil.textContent = `votre email : ${email}`
+emailProfil.setAttribute("class","email") 
+const modifemail = document.createElement("input")
+modifemail.setAttribute("type","text") 
+modifemail.setAttribute("placeholder","modifier votre email")
+const btnModifemail = document.createElement("button")
+btnModifemail.setAttribute("type","button")
+btnModifemail.textContent = "modifier" 
+element.append(emailProfil,modifemail,btnModifemail)
+// affichage adresse  
+const adresseProfil = document.createElement("p")
+adresseProfil.textContent = `votre adresse : ${adresse}`
+adresseProfil.setAttribute("class","adresse") 
+const modifadresse = document.createElement("input")
+modifadresse.setAttribute("type","text") 
+modifadresse.setAttribute("placeholder","modifier votre adresse")
+const btnModifadresse = document.createElement("button")
+btnModifadresse.setAttribute("type","button")
+btnModifadresse.textContent = "modifier" 
+element.append(adresseProfil,modifadresse,btnModifadresse)
+// affichage telephone
+const telProfil = document.createElement("p")
+telProfil.textContent = `votre numéro de téléphone : ${tel}`
+telProfil.setAttribute("class","telephone") 
+const modiftel = document.createElement("input")
+modiftel.setAttribute("type","text") 
+modiftel.setAttribute("placeholder","modifier votre numéro de téléphone")
+const btnModiftel = document.createElement("button")
+btnModiftel.setAttribute("type","button")
+btnModiftel.textContent = "modifier" 
+element.append(telProfil,modiftel,btnModiftel)
+// mot de passe 
+const labelMdp = document.createElement("p")
+labelMdp.textContent = "changer votre mot de passe :"
+const mdp = document.createElement("input")
+mdp.setAttribute("class","mdp")
+mdp.setAttribute("type","text")
+mdp.setAttribute("placeholder","entrez votre nouveau mot de passe")
+const confirmMdp = document.createElement("input")
+confirmMdp.setAttribute("class","confirmMdp")
+confirmMdp.setAttribute("type","text")
+confirmMdp.setAttribute("placeholder","entrez a nouveau votre mot de passe")
+const btnValidatemdp = document.createElement("button")
+btnValidatemdp.setAttribute("class","btnValidateMdp")
+btnValidatemdp.setAttribute("type","button")
+btnValidatemdp.textContent = "modifier"
+element.append(labelMdp,mdp,confirmMdp,btnValidatemdp)
+// ajout bouton pour changement véhicule 
+const btnChangementVehicule = document.createElement("button")
+btnChangementVehicule.setAttribute("class","btnChangementVehicule")
+btnChangementVehicule.setAttribute("type","button") 
+btnChangementVehicule.textContent = "modifier le véhicule" 
+const affich = document.querySelector(".affich")
+affich.append(btnChangementVehicule)
+    }
+  },150) 
 }
 
 // implémenter

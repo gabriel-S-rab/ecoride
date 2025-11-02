@@ -21,19 +21,19 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
            }
      
            if($_POST["data"]==="connexion"){
-            if(isset($_POST["id"])){
+            if(isset($_POST["identifiant"])){
              if(isset($_POST["mdp"])){
-                  $id= htmlspecialchars($_POST["id"]);
+                  $identifiant= htmlspecialchars($_POST["identifiant"]);
                   $mdp = htmlspecialchars($_POST["mdp"]);
-            $request=$connexion->prepare('SELECT email,password FROM Utilisateur WHERE email = :email AND password= :password'); 
-            $request->bindParam(":email",$id,PDO::PARAM_STR);
+            $request=$connexion->prepare('SELECT email,password,utilisateur_id FROM Utilisateur WHERE email = :email AND password= :password'); 
+            $request->bindParam(":email",$identifiant,PDO::PARAM_STR);
             $request->bindParam(":password",$mdp,PDO::PARAM_STR);
             $request->execute();
             $result = $request->fetch(PDO::FETCH_ASSOC);
             if(count($result)>0){
-             if($id===$result["email"] && $mdp===$result["password"]){
+             if($identifiant===$result["email"] && $mdp===$result["password"]){
                  
-                  echo json_encode(["test"=>"ok connexion","id"=>$id]);
+                  echo json_encode(["test"=>"ok connexion","id"=>$result["utilisateur_id"]]);
                   exit();
              }
              }
@@ -90,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               
             if($_POST["data"]==="myProfil"){
               
-              $RecupInfoProfil = $connexion->prepare('SELECT * FROM utilisateur WHERE email="robert"'); 
+              $RecupInfoProfil = $connexion->prepare('SELECT * FROM utilisateur WHERE email="robert@gmail.com"'); 
             //  $RecupInfoProfil->bindParam(":id",$id,PDO::PARAM_INT);
               $RecupInfoProfil->execute();
               $infoProfil= $RecupInfoProfil->fetch(PDO::FETCH_ASSOC); 

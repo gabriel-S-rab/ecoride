@@ -1,2 +1,4 @@
-<p>je suis bien la page de mon profil</p>
+<div class="affich">
+<div class="element"></div>
+</div>
 
