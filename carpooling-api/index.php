@@ -10,7 +10,7 @@ $connexion= new PDO("mysql:host=localhost;dbname=Covoiturage_db;charset=UTF8","r
 
     
 if($_SERVER["REQUEST_METHOD"]==="POST"){
-      if($_POST["data"]==="globalFetch"){
+      if(htmlspecialchars($_POST["data"])==="globalFetch"){
       $sql ="SELECT * FROM covoiturage";
             $request=$connexion->prepare($sql); 
             $request->execute(); 
@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             exit(); // a voir
            }
      
-           if($_POST["data"]==="connexion"){
+           if(htmlspecialchars($_POST["data"])==="connexion"){
             if(isset($_POST["identifiant"])){
              if(isset($_POST["mdp"])){
                   $identifiant= htmlspecialchars($_POST["identifiant"]);
@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
              }
              }
             }}    
-            if($_POST["data"]==="inscription"){
+            if(htmlspecialchars($_POST["data"])==="inscription"){
               $prenom = htmlspecialchars($_POST["prenom"]);
               $nom = htmlspecialchars($_POST["nom"]); 
               $datenaissance = htmlspecialchars($_POST["dateNaissance"]); 
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $id=$connexion->lastInsertId();
               echo json_encode(["inscription"=>"ok","id"=>$id]);// verifier le probléme des echo 
             }
-              if($_POST["data"]==="inscriptionVehicule"){
+              if(htmlspecialchars($_POST["data"])==="inscriptionVehicule"){
                 $id=htmlspecialchars($_POST["id"]);
                 $marque=htmlspecialchars($_POST["marque"]);
                 $modele=htmlspecialchars($_POST["modele"]);
@@ -88,10 +88,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
                 exit();
               }
               
-            if($_POST["data"]==="myProfil"){
-              
-              $RecupInfoProfil = $connexion->prepare('SELECT * FROM utilisateur WHERE email="robert@gmail.com"'); 
-            //  $RecupInfoProfil->bindParam(":id",$id,PDO::PARAM_INT);
+            if(htmlspecialchars($_POST["data"])==="myProfil"){
+              $id = htmlspecialchars($_POST["id"]);
+              $RecupInfoProfil = $connexion->prepare("SELECT * FROM utilisateur WHERE utilisateur_id=:id"); 
+              $RecupInfoProfil->bindParam(":id",$id,PDO::PARAM_INT);
               $RecupInfoProfil->execute();
               $infoProfil= $RecupInfoProfil->fetch(PDO::FETCH_ASSOC); 
               

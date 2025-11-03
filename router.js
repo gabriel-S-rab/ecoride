@@ -495,8 +495,10 @@ case "/monProfil" :
 path=routes["/monProfil"]
 navigate(event,path,url)
 afficher(path)
+const id = sessionStorage.getItem("id")
 const formData = new FormData()
 formData.append("data","myProfil")
+formData.append("id",id)
 const response = await fetch("/carpooling-api/index.php", 
   {
     method : "POST",
@@ -610,6 +612,9 @@ btnChangementVehicule.setAttribute("type","button")
 btnChangementVehicule.textContent = "modifier le véhicule" 
 const affich = document.querySelector(".affich")
 affich.append(btnChangementVehicule)
+if(infoProfil.role!=="covoitureur"){
+  btnChangementVehicule.setAttribute("hidden","")
+}
     }
   },150) 
 }
@@ -617,7 +622,7 @@ affich.append(btnChangementVehicule)
 // implémenter
 break;
 case "deconnexion" : 
-let deconnexion = document.querySelector(".deconnexion")
+let deconnexion = document.querySelector(".deconnexion")// éventuellement a supprimer
 sessionStorage.removeItem("id")
 location.replace("http://localhost/")
 alert("vous étes bien deconnecté !")
