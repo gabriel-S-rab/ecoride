@@ -99,9 +99,34 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               echo json_encode($infoProfil);
               exit();
             }
+            if(htmlspecialchars($_POST["data"])==="changementPseudo"){
+              $newPseudo = htmlspecialchars($_POST["newPseudo"]);
+              // gestion du changement de pseudo
+            }
+            if(htmlspecialchars($_POST["data"])==="changeNom"){
+              $newNom = htmlspecialchars($_POST["newNom"]);
+              // gestion du changement de nom
+            }
+            if(htmlspecialchars($_POST["data"])==="changePrenom"){
+              $newPrenom = htmlspecialchars($_POST["changePrenom"]);
+              // gestion du changement de prenom
+            }
+            if(htmlspecialchars($_POST["data"])==="changeEmail"){
+              $newEmail = htmlspecialchars($_POST["newEmail"]); 
+              // gestion du changement de l'email
+            }
+            if(htmlspecialchars($_POST["data"])==="changeAdresse"){
+              $newAdresse = htmlspecialchars($_POST["newAdresse"]);
+              // gestion du changement d'adresse
+            }
+            if(htmlspecialchars($_POST["data"])==="changeTel"){
+              $newTel = htmlspecialchars($_POST["newTel"]);
+              // gestion du changement du tel
+            }
+
             }
           
 
-
+// prévoir csrf token du coté javascript newTel
 
 

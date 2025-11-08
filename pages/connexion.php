@@ -4,7 +4,7 @@
     <label for="identifiant">entrez votre identifiant :</label>
     <input type="text" name="identifiantConnecion" class="identifiant" id="identifiant" placeholder="entrez votre identifiant">
     <label for="mdp">entrez votre mot de passe :</label>
-    <input type="text" class="mdp" id="mdp" name="mdpConnexion" placeholder="entrez votre mot de passe">
+    <input type="password" class="mdp" id="mdp" name="mdpConnexion" placeholder="entrez votre mot de passe">
     <button class="btnFormConnexion" type="button">connexion</button>
 </form>
 

@@ -12,7 +12,8 @@ const routes = { /* voir pour créer une class */
    "/connexion" : "/pages/connexion.php", 
    "/inscription" : "/pages/inscription.php",
    "/inscriptionVehicule" : "/pages/inscriptionVehicule.php",
-   "/monProfil" : "/pages/monProfil.php"
+   "/monProfil" : "/pages/monProfil.php", 
+   "/changementVehicule" : "/pages/modifVehicule.php"
 }
 
 const url = window.location.origin; 
@@ -448,9 +449,6 @@ btnInscription.addEventListener('click', async () => {
       btnInscription.addEventListener("click",async () => {
         const formData = new FormData()
         formData.append("data","inscriptionVehicule") 
-        console.log(control.id) // utiliser control.id
-       // formData.append("id",id)
-       // console.log(id)
         let id = control.id
         formData.append("id",id)
         formData.append("marque",marque.value)
@@ -615,6 +613,116 @@ affich.append(btnChangementVehicule)
 if(infoProfil.role!=="covoitureur"){
   btnChangementVehicule.setAttribute("hidden","")
 }
+btnModifPseudo.addEventListener("click", async () => {
+  console.log(modifPseudo.value)
+  const changePseudo = new FormData()
+  let nouveauPseudo = modifPseudo.value
+  let id = sessionStorage.getItem("id")
+  changePseudo.append("data","changementPseudo")
+  changePseudo.append("newPseudo",nouveauPseudo)
+  changePseudo.append("id",id)
+  const envoiNouveauPseudo = await fetch("/carpooling-api/index.php",
+    {
+      method : "POST", 
+      body : changePseudo
+    }
+  )
+})
+
+btnModifNom.addEventListener("click", async () => {  // test avec selection direct de l'élément créer
+  console.log(modifNom.value)
+  const changeNom = new FormData()
+  let nouveauNom = modifNom.value
+  let id = sessionStorage.getItem("id")
+  changeNom.append("data","changeNom")
+  changeNom.append("newNom",nouveauNom)
+  changeNom.append("id",id)
+  const envoiNouveauNom = await fetch("/carpooling-api/index.php",{
+    method : "POST",
+    body : changeNom
+  })
+})
+btnModifprenom.addEventListener("click", async () => {
+  console.log(modifPrenom.value)
+ const changePrenom = new FormData()
+ let nouveauPrenom = modifPrenom.value
+ let id = sessionStorage.getItem("id")
+  changePrenom.append("data","changePrenom")
+  changePrenom.append("changePrenom",nouveauPrenom)
+  changePrenom.append("id",id)
+  const envoiNouveauPrenom = await fetch("/carpooling-api/index.php",
+    {
+      method : "POST", 
+      body : changePrenom
+    }
+  )
+})
+btnModifemail.addEventListener("click", async () => {
+  console.log(modifemail.value)
+  const changeEmail = new FormData()
+  let nouveauEmail = modifemail.value 
+  let id = sessionStorage.getItem("id")
+  changeEmail.append("data","changeEmail")
+  changeEmail.append("newEmail",nouveauEmail)
+  changeEmail.append("id",id)
+  const envoiNouveauEmail = await fetch("/carpoolig-api/index.php",
+    {
+      method : "POST", 
+      body : changeEmail
+    }
+  ) 
+})
+btnModifadresse.addEventListener("click", async () => {
+  console.log(modifadresse.value)
+  const  changeAdresse = new FormData()
+  let nouvelleAdresse = modifadresse.value 
+  let id = sessionStorage.getItem("id")
+  changeAdresse.append("data","changeAdresse")
+  changeAdresse.append("newAdresse",nouvelleAdresse)
+  changeAdresse.append("id",id)
+  const envoiNouvelleAdresse = await fetch("/carpooling-api/index.php",
+    {
+      method : "POST", 
+      body : changeAdresse
+    }
+  )
+})
+btnModiftel.addEventListener("click", async () => {
+  console.log(modiftel.value)
+  const changeTel = new FormData()
+  let nouveauTel = modiftel.value 
+  let id = sessionStorage.getItem("id")
+  changeTel.append("data","changeTel")
+  changeTel.append("newTel",nouveauTel)
+  changeTel.append("id",id)
+  const envoiNouveauTel = await fetch("/carpooling-api/index.php", 
+    {
+      method : "POST", 
+      body : changeTel
+    }
+  )
+})
+btnValidatemdp.addEventListener("click", async () => {
+  console.log(mdp.value)
+  const changeMdp = new FormData()
+  let nouveauMdp = mdp.value 
+  let id = sessionStorage.getItem("id")
+  changeMdp.append("data","changeMdp")
+  changeMdp.append("changeMdp",nouveauMdp)
+  changeMdp.append("id",id)
+  const envoiNouveauMdp = await fetch("/carpooling-api/index.php", 
+    {
+      method : "POST", 
+      body : changeMdp
+    }
+  )
+})
+btnChangementVehicule.addEventListener("click", async () => {
+  console.log("changement de vehicule")
+  path=routes["/changementVehicule"]
+  navigate(event,path,url)
+  afficher(path)
+})
     }
   },150) 
 }
