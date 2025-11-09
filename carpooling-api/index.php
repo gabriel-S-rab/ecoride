@@ -101,27 +101,40 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             }
             if(htmlspecialchars($_POST["data"])==="changementPseudo"){
               $newPseudo = htmlspecialchars($_POST["newPseudo"]);
-              // gestion du changement de pseudo
+              $id = htmlspecialchars($_POST["id"]);
+              $requeteModifPseudo = $connexion->prepare();
+              // gestion changementpseudo
             }
             if(htmlspecialchars($_POST["data"])==="changeNom"){
               $newNom = htmlspecialchars($_POST["newNom"]);
-              // gestion du changement de nom
+              $id = htmlspecialchars($_POST["id"]);
+              $requeteModifNom = $connexion->prepare();
+              // gestion changement nom
             }
             if(htmlspecialchars($_POST["data"])==="changePrenom"){
               $newPrenom = htmlspecialchars($_POST["changePrenom"]);
+              $id = htmlspecialchars($_POST["id"]);
+              $requeteModifPrenom = $connexion->prepare();
               // gestion du changement de prenom
             }
             if(htmlspecialchars($_POST["data"])==="changeEmail"){
               $newEmail = htmlspecialchars($_POST["newEmail"]); 
+              $id = htmlspecialchars($_POST["id"]); 
+              $requeteModifEmail = $connexion -> prepare();
               // gestion du changement de l'email
             }
             if(htmlspecialchars($_POST["data"])==="changeAdresse"){
               $newAdresse = htmlspecialchars($_POST["newAdresse"]);
+              $id = htmlspecialchars($_POST["id"]); 
+              $requeteModifAdresse = $connexion->prepare();
               // gestion du changement d'adresse
             }
             if(htmlspecialchars($_POST["data"])==="changeTel"){
               $newTel = htmlspecialchars($_POST["newTel"]);
+              $id = htmlspecialchars($_POST["id"]); 
+              $requeteModifTel=$connexion->prepare();
               // gestion du changement du tel
+              
             }
 
             }
