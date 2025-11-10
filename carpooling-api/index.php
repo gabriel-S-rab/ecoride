@@ -102,41 +102,72 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             if(htmlspecialchars($_POST["data"])==="changementPseudo"){
               $newPseudo = htmlspecialchars($_POST["newPseudo"]);
               $id = htmlspecialchars($_POST["id"]);
-              $requeteModifPseudo = $connexion->prepare();
+              $requeteModifPseudo = $connexion->prepare("UPDATE utilisateur SET pseudo=:pseudo WHERE utilisateur_id=:id");
+              $requeteModifPseudo->bindParam(":pseudo",$newPseudo,PDO::PARAM_STR);
+              $requeteModifPseudo->bindParam(":id",$id,PDO::PARAM_STR);
+              $requeteModifPseudo->execute();
+              // creer une gestion d'erreur avec (http_response_code)
+              if(http_response_code()===200){
+                echo json_encode(["changementPseudo"=>"ok"]);
+              }
+              exit();
               // gestion changementpseudo
             }
             if(htmlspecialchars($_POST["data"])==="changeNom"){
               $newNom = htmlspecialchars($_POST["newNom"]);
               $id = htmlspecialchars($_POST["id"]);
-              $requeteModifNom = $connexion->prepare();
+              $requeteModifNom = $connexion->prepare("UPDATE utilisateur SET nom=:nom WHERE utilisateur_id=:id");
+              $requeteModifNom->bindParam(":nom",$newNom,PDO::PARAM_STR); 
+              $requeteModifNom->bindParam(":id",$id,PDO::PARAM_STR); 
+              $requeteModifNom->execute();
+              if(http_response_code()===200){
+                echo json_encode(["confirmNewNom"=>"ok"]);//probléme d'affichage voir gestion requéte/suppresionn de l'ancienne requéte ?? 
+              }
+              exit();
               // gestion changement nom
             }
             if(htmlspecialchars($_POST["data"])==="changePrenom"){
               $newPrenom = htmlspecialchars($_POST["changePrenom"]);
               $id = htmlspecialchars($_POST["id"]);
-              $requeteModifPrenom = $connexion->prepare();
+              $requeteModifPrenom = $connexion->prepare("UPDATE utilisateur SET prenom=:prenom WHERE utilisateur_id=:id");
+              $requeteModifPrenom->bindParam(":prenom",$prenom,PDO::PARAM_STR); 
+              $requeteModifPrenom->bindParam(":id",$id,PDO::PARAM_STR);
+              $requeteModifPrenom->execute();
+              //création http_response_code
               // gestion du changement de prenom
             }
             if(htmlspecialchars($_POST["data"])==="changeEmail"){
               $newEmail = htmlspecialchars($_POST["newEmail"]); 
               $id = htmlspecialchars($_POST["id"]); 
-              $requeteModifEmail = $connexion -> prepare();
+              $requeteModifEmail = $connexion -> prepare("UPDATE utilisateur SET email=:email WHERE utilisateur_id=:id");
+              $requeteModifEmail->bindParam(":email",$newEmail,PDO::PARAM_STR); 
+              $requeteModifEmail->bindParam(":id",$id,PDO::PARAM_STR); 
+              $requeteModifEmail->execute();
+              //ajout http_response_code
               // gestion du changement de l'email
             }
             if(htmlspecialchars($_POST["data"])==="changeAdresse"){
               $newAdresse = htmlspecialchars($_POST["newAdresse"]);
               $id = htmlspecialchars($_POST["id"]); 
-              $requeteModifAdresse = $connexion->prepare();
+              $requeteModifAdresse = $connexion->prepare("UPDATE utilisateur SET adresse=:adresse WHERE utilisateur_id=:id");
+              $requeteModifAdresse->bindParam(":adresse",$newAdresse,PDO::PARAM_STR); 
+              $requeteModifAdresse->bindParam(":id",$id,PDO::PARAM_STR);
+              $requeteModifAdresse->execute();
+              //ajout http_response_code
               // gestion du changement d'adresse
             }
             if(htmlspecialchars($_POST["data"])==="changeTel"){
               $newTel = htmlspecialchars($_POST["newTel"]);
               $id = htmlspecialchars($_POST["id"]); 
-              $requeteModifTel=$connexion->prepare();
+              $requeteModifTel=$connexion->prepare("UPDATE utilisateur SET telephone=:tel WHERE utilisateur_id=:id");
+              $requeteModifTel->bindParam(":tel",$newTel,PDO::PARAM_STR); 
+              $requeteModifTel->bindParam(":id",$id,PDO::PARAM_STR);
+              $requeteModifTel->execute();
+              //ajout http_response_code
               // gestion du changement du tel
               
             }
-
+            //ajout modif mdp
             }
           
 

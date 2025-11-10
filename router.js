@@ -627,6 +627,10 @@ btnModifPseudo.addEventListener("click", async () => {
       body : changePseudo
     }
   )
+  const responseEnvoiNouveauPseudo = await envoiNouveauPseudo.json()
+  if(responseEnvoiNouveauPseudo.changementPseudo==="ok"){
+    console.log("le pseudo a bien était changer")
+  }
 })
 
 btnModifNom.addEventListener("click", async () => {  // test avec selection direct de l'élément créer
@@ -656,6 +660,10 @@ btnModifprenom.addEventListener("click", async () => {
       body : changePrenom
     }
   )
+  const reponseEnvoiNouveauPrenom = await envoiNouveauPrenom.json()
+  if(reponseEnvoiNouveauPrenom.confirmNewNom ==="ok"){
+    console.log("le nom a bien étais changer")
+  }
 })
 btnModifemail.addEventListener("click", async () => {
   console.log(modifemail.value)
