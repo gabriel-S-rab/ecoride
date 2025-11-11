@@ -629,7 +629,7 @@ btnModifPseudo.addEventListener("click", async () => {
   )
   const responseEnvoiNouveauPseudo = await envoiNouveauPseudo.json()
   if(responseEnvoiNouveauPseudo.changementPseudo==="ok"){
-    console.log("le pseudo a bien était changer")
+    alert("le pseudo a bien était changer")
   }
 })
 
@@ -645,12 +645,17 @@ btnModifNom.addEventListener("click", async () => {  // test avec selection dire
     method : "POST",
     body : changeNom
   })
+  const responseEnvoiNom = await envoiNouveauNom.json()
+  if(responseEnvoiNom.confirmNewNom==="ok"){
+    alert("le nom a bien été changer !")
+  }
 })
 btnModifprenom.addEventListener("click", async () => {
   console.log(modifPrenom.value)
  const changePrenom = new FormData()
  let nouveauPrenom = modifPrenom.value
  let id = sessionStorage.getItem("id")
+ console.log(id)
   changePrenom.append("data","changePrenom")
   changePrenom.append("changePrenom",nouveauPrenom)
   changePrenom.append("id",id)
@@ -661,8 +666,8 @@ btnModifprenom.addEventListener("click", async () => {
     }
   )
   const reponseEnvoiNouveauPrenom = await envoiNouveauPrenom.json()
-  if(reponseEnvoiNouveauPrenom.confirmNewNom ==="ok"){
-    console.log("le nom a bien étais changer")
+  if(reponseEnvoiNouveauPrenom.confirmNewPrenom ==="ok"){
+    alert("le prenom a bien était changé !")
   }
 })
 btnModifemail.addEventListener("click", async () => {
@@ -673,12 +678,15 @@ btnModifemail.addEventListener("click", async () => {
   changeEmail.append("data","changeEmail")
   changeEmail.append("newEmail",nouveauEmail)
   changeEmail.append("id",id)
-  const envoiNouveauEmail = await fetch("/carpoolig-api/index.php",
+  const envoiNouveauEmail = await fetch("/carpooling-api/index.php",
     {
       method : "POST", 
       body : changeEmail
-    }
-  ) 
+    }) 
+const responseEnvoiNouveauEmail = await envoiNouveauEmail.json()
+if(responseEnvoiNouveauEmail.confirmNewEmail==="ok"){
+  alert("l'email a bien était changé !")
+}
 })
 btnModifadresse.addEventListener("click", async () => {
   console.log(modifadresse.value)
@@ -692,8 +700,11 @@ btnModifadresse.addEventListener("click", async () => {
     {
       method : "POST", 
       body : changeAdresse
+    })
+    const responseEnvoiNouvelleAdresse = await envoiNouvelleAdresse.json()
+    if(responseEnvoiNouvelleAdresse.confirmNewAdresse ==="ok"){
+      alert("l'adresse a bien était changé !")
     }
-  )
 })
 btnModiftel.addEventListener("click", async () => {
   console.log(modiftel.value)
@@ -707,16 +718,22 @@ btnModiftel.addEventListener("click", async () => {
     {
       method : "POST", 
       body : changeTel
-    }
-  )
+    })
+  const responseEnvoiNouveauTel = await envoiNouveauTel.json()
+  if(responseEnvoiNouveauTel.confirmNewTel==="ok"){
+    alert("le numéro de téléphone a bien était changé !")
+  }
 })
 btnValidatemdp.addEventListener("click", async () => {
+  if(mdp.value!=="" && confirmMdp.value!==""){
   console.log(mdp.value)
   const changeMdp = new FormData()
   let nouveauMdp = mdp.value 
+  let confirmfinalMdp = confirmMdp.value
   let id = sessionStorage.getItem("id")
   changeMdp.append("data","changeMdp")
-  changeMdp.append("changeMdp",nouveauMdp)
+  changeMdp.append("newMdp",nouveauMdp)
+  changeMdp.append("confirmMdp",confirmfinalMdp)
   changeMdp.append("id",id)
   const envoiNouveauMdp = await fetch("/carpooling-api/index.php", 
     {
@@ -724,6 +741,15 @@ btnValidatemdp.addEventListener("click", async () => {
       body : changeMdp
     }
   )
+  const responseEnvoiNouveauMdp = await envoiNouveauMdp.json()
+  if(responseEnvoiNouveauMdp.confirmNewMdp ==="ok"){
+    console.log("le mot de passe a bien était changé !")
+  }else if(responseEnvoiNouveauMdp.erreur ==="ok"){
+    alert("mot de passe saisi non identique ! veuillez recommencer.")
+  }
+}else{
+  alert("veuillez compléter les deux case !")
+}
 })
 btnChangementVehicule.addEventListener("click", async () => {
   console.log("changement de vehicule")

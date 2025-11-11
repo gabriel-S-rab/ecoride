@@ -109,8 +109,8 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               // creer une gestion d'erreur avec (http_response_code)
               if(http_response_code()===200){
                 echo json_encode(["changementPseudo"=>"ok"]);
+                exit();
               }
-              exit();
               // gestion changementpseudo
             }
             if(htmlspecialchars($_POST["data"])==="changeNom"){
@@ -120,20 +120,24 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requeteModifNom->bindParam(":nom",$newNom,PDO::PARAM_STR); 
               $requeteModifNom->bindParam(":id",$id,PDO::PARAM_STR); 
               $requeteModifNom->execute();
-              if(http_response_code()===200){
-                echo json_encode(["confirmNewNom"=>"ok"]);//probléme d'affichage voir gestion requéte/suppresionn de l'ancienne requéte ?? 
-              }
-              exit();
+                  if(http_response_code()===200){
+                echo json_encode(["confirmNewNom"=>"ok"]);
+                exit();
+              }         
               // gestion changement nom
             }
             if(htmlspecialchars($_POST["data"])==="changePrenom"){
               $newPrenom = htmlspecialchars($_POST["changePrenom"]);
               $id = htmlspecialchars($_POST["id"]);
               $requeteModifPrenom = $connexion->prepare("UPDATE utilisateur SET prenom=:prenom WHERE utilisateur_id=:id");
-              $requeteModifPrenom->bindParam(":prenom",$prenom,PDO::PARAM_STR); 
+              $requeteModifPrenom->bindParam(":prenom",$newPrenom,PDO::PARAM_STR); 
               $requeteModifPrenom->bindParam(":id",$id,PDO::PARAM_STR);
               $requeteModifPrenom->execute();
               //création http_response_code
+              if(http_response_code()===200){
+                echo json_encode(["confirmNewPrenom"=>"ok"]);
+                exit();
+              }
               // gestion du changement de prenom
             }
             if(htmlspecialchars($_POST["data"])==="changeEmail"){
@@ -144,6 +148,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requeteModifEmail->bindParam(":id",$id,PDO::PARAM_STR); 
               $requeteModifEmail->execute();
               //ajout http_response_code
+              if(http_response_code()===200){
+                echo json_encode(["confirmNewEmail"=>"ok"]);
+                exit();
+              }
               // gestion du changement de l'email
             }
             if(htmlspecialchars($_POST["data"])==="changeAdresse"){
@@ -154,6 +162,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requeteModifAdresse->bindParam(":id",$id,PDO::PARAM_STR);
               $requeteModifAdresse->execute();
               //ajout http_response_code
+              if(http_response_code()===200){
+                echo json_encode(["confirmNewAdresse"=>"ok"]);
+                exit();
+              }
               // gestion du changement d'adresse
             }
             if(htmlspecialchars($_POST["data"])==="changeTel"){
@@ -164,10 +176,29 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requeteModifTel->bindParam(":id",$id,PDO::PARAM_STR);
               $requeteModifTel->execute();
               //ajout http_response_code
-              // gestion du changement du tel
-              
+              if(http_response_code()===200){
+                echo json_encode(["confirmNewTel"=>"ok"]);
+                exit();
+              }   
             }
-            //ajout modif mdp
+            if(htmlspecialchars($_POST["data"])==="changeMdp"){
+              $newMdp = htmlspecialchars($_POST["newMdp"]);
+              $confirmNewMdp = htmlspecialchars($_POST["confirmMdp"]);
+              $id = htmlspecialchars($_POST["id"]); 
+              if($newMdp===$confirmNewMdp){
+              $requeteModifMdp=$connexion->prepare("UPDATE utilisateur SET password=:password WHERE utilisateur_id=:id");
+              $requeteModifMdp->bindParam(":password",$newMdp,PDO::PARAM_STR);
+              $requeteModifMdp->bindParam(":id",$id,PDO::PARAM_STR);
+              $requeteModifMdp->execute();
+              if(http_response_code()===200){
+                echo json_encode(["confirmNewMdp"=>"ok"]);
+                exit();
+              }
+              }else{
+                   echo json_encode(["erreur"=>"ok"]);
+                   exit();
+              }
+            }
             }
           
 
