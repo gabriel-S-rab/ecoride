@@ -420,6 +420,7 @@ btnInscription.addEventListener('click', async () => {
   formData.append("pseudo",pseudo.value)
   formData.append("email",email.value)
   formData.append("mdp",mdp.value)
+  formData.append("profilType",profilType.value)
   const response = await fetch("/carpooling-api/index.php", 
     {
     method : "POST", 
@@ -756,6 +757,34 @@ btnChangementVehicule.addEventListener("click", async () => {
   path=routes["/changementVehicule"]
   navigate(event,path,url)
   afficher(path)
+  const  actuelVehicule = new FormData()
+  const id = sessionStorage.getItem("id")
+  actuelVehicule.append("data","actuelVehicule")
+  actuelVehicule.append("id",id)
+  const recupActuelVehicule = await fetch("/carpooling-api/index.php",
+    {
+      method : "POST", 
+      body : actuelVehicule
+    })
+  const resultActuelVehicule = await recupActuelVehicule.json() 
+  console.log(resultActuelVehicule)
+  let modifContainer = document.querySelector(".modifContainer")
+  let couleur = resultActuelVehicule.couleur
+  let dateImmatriculation = resultActuelVehicule.date_premiere_immatriculation
+  let energie = resultActuelVehicule.energie 
+  let immatriculation = resultActuelVehicule.immatriculation
+  let modele = resultActuelVehicule.modele 
+  let interval = setInterval(()=>{
+  let modifContainer = document.querySelector(".modifContainer")
+  if(modifContainer){
+    clearInterval(interval)
+      let labelMarque = document.createElement("p")
+      labelMarque.textContent = `marque actuel : ${modele}`
+      modifContainer.append(labelMarque)
+  }
+  },150)
+
+  
 })
     }
   },150) 

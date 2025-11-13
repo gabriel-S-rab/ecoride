@@ -47,12 +47,12 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $email = htmlspecialchars($_POST["email"]); 
               $mdp = htmlspecialchars($_POST["mdp"]);
              // $confirmdp = htmlspecialchars($_POST["confirmmdp"]);
-             // $profilType = htmlspecialchars($_POST["profilType"]); 
+             $profilType = htmlspecialchars($_POST["profilType"]); // test pour l'inscription
               $tel = htmlspecialchars($_POST["tel"]); 
               $adresse = htmlspecialchars($_POST["adresse"]);
               /* a finir d'implémenter */
-              $requete=$connexion->prepare("INSERT INTO Utilisateur(nom,prenom,email,password,telephone,adresse,date_naissance,pseudo)
-               VALUES (:nom,:prenom,:email,:password,:telephone,:adresse,:date_naissance,:pseudo)");
+              $requete=$connexion->prepare("INSERT INTO Utilisateur(nom,prenom,email,password,telephone,adresse,date_naissance,pseudo,role)
+               VALUES (:nom,:prenom,:email,:password,:telephone,:adresse,:date_naissance,:pseudo,:role)");
               $requete->bindParam(":nom",$nom,PDO::PARAM_STR); 
               $requete->bindParam(":prenom",$prenom,PDO::PARAM_STR); 
               $requete->bindParam(":email",$email,PDO::PARAM_STR); 
@@ -61,6 +61,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requete->bindParam(":adresse",$adresse,PDO::PARAM_STR); 
               $requete->bindParam(":date_naissance",$datenaissance); 
               $requete->bindParam(":pseudo",$pseudo,PDO::PARAM_STR); 
+              $requete->bindParam(":role",$profilType,PDO::PARAM_STR);
               $requete->execute();
               $id=$connexion->lastInsertId();
               echo json_encode(["inscription"=>"ok","id"=>$id]);// verifier le probléme des echo 
@@ -74,14 +75,15 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
                 $immatriculation = htmlspecialchars($_POST["immatriculation"]);
                 $typeVehicule = htmlspecialchars($_POST["typeVehicule"]);
                 
-                $ajoutVehicule=$connexion->prepare("INSERT INTO voiture(voiture_id,modele,immatriculation,energie,couleur,date_premiere_immatriculation)
-                                                    VALUES (:voiture_id,:modele,:immatriculation,:energie,:couleur,:date_premiere_immatriculation)");
+                $ajoutVehicule=$connexion->prepare("INSERT INTO voiture(voiture_id,modele,immatriculation,energie,couleur,date_premiere_immatriculation,marque)
+                                                    VALUES (:voiture_id,:modele,:immatriculation,:energie,:couleur,:date_premiere_immatriculation,:marque)");
                 $ajoutVehicule->bindParam(":voiture_id",$id,PDO::PARAM_INT);                                 
                 $ajoutVehicule->bindParam(":modele",$modele,PDO::PARAM_STR);
                 $ajoutVehicule->bindParam(":immatriculation",$immatriculation,PDO::PARAM_STR); 
                 $ajoutVehicule->bindParam(":energie",$typeVehicule,PDO::PARAM_STR); 
                 $ajoutVehicule->bindParam(":couleur",$couleur,PDO::PARAM_STR); 
                 $ajoutVehicule->bindParam(":date_premiere_immatriculation",$datemiseencirculation); 
+                $ajoutVehicule->bindParam(":marque",$marque,PDO::PARAM_STR);
                 $ajoutVehicule->execute();
                 
                   echo json_encode(["confirmVehicule"=>"confirmok"]);
@@ -197,6 +199,16 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               }else{
                    echo json_encode(["erreur"=>"ok"]);
                    exit();
+              }
+            }
+            if(htmlspecialchars($_POST["data"])==="actuelVehicule"){
+              $id = htmlspecialchars($_POST["id"]);
+              $infoVehicule = $connexion->prepare("SELECT * FROM voiture WHERE voiture_id=:id");
+              $infoVehicule->bindParam(":id",$id,PDO::PARAM_STR);
+              $infoVehicule->execute();
+              $recupInfoVehicule = $infoVehicule->fetch(PDO::FETCH_ASSOC);
+              if(http_response_code()===200){
+                echo json_encode($recupInfoVehicule);
               }
             }
             }

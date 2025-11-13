@@ -21,7 +21,7 @@
     <label for="profilType" title="peut etre modifier ultérieurement">type de profil :</label>
     <select id="profilType" class="profilType" name="profiltype" title="peut étre modifier ultérieurement">
         <option value="Utilisateur">Utilisateur</option>
-        <option value="Covoitureur">Covoitureur</option>
+        <option value="covoitureur">Covoitureur</option>
     </select>
     <button class="btnInscription" type="button">Valider</button>
     <div class="buttonBotom"></div>
