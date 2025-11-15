@@ -598,8 +598,6 @@ border-radius: 10px ;
     height: 4vh;
     width:15vh;
     font-size: 18px;
-    border-radius: 5px;
-    font-size: 18px;
  }
 
  .element button:hover 
@@ -630,8 +628,6 @@ border-radius: 10px ;
     height: 4vh;
     width:35vh;
     font-size: 18px;
-    border-radius: 5px;
-    font-size: 18px;
     margin-top: 45px;
  }
 
@@ -652,3 +648,53 @@ border-radius: 10px ;
  {
     margin-top: 15px;
  }
+/* page changement vehicule */
+
+.blockModifContainer 
+{
+    height: 100vh; 
+    width:100vw;
+}
+
+.modifContainer
+{
+    border-radius: 20px;
+    background-color: var(--primary_color);
+    color:white; 
+    font-family: Arial, Helvetica, sans-serif;
+    width: 60%;
+    padding:10px;
+    margin: auto;
+    justify-items: center;
+    text-align: center; 
+    font-size: 18px;
+    margin-top: 40px;
+}
+
+.inputModifVehicule
+{
+    display:inline-block;
+    height: 4vh;
+    width:35vh;
+    border:none;
+    background-color:#e0e0e0;
+}
+
+.inputModifVehicule:hover 
+{
+    background-color: white;
+}
+
+.btnModifVehicule 
+{
+    border: none;
+    cursor: pointer;
+    height: 4vh;
+    width:15vh;
+    background-color: var(--third_color);
+}
+
+.btnModifVehicule:hover 
+{
+    background-color: #919e79;
+}

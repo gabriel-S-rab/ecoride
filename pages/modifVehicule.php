@@ -1,2 +1,3 @@
-<p>je suis sur la page modifVehicule</p>
+<div class="blockModifContainer">
 <div class="modifContainer"></div>
+</div>

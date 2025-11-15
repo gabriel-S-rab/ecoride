@@ -768,7 +768,6 @@ btnChangementVehicule.addEventListener("click", async () => {
     })
   const resultActuelVehicule = await recupActuelVehicule.json() 
   console.log(resultActuelVehicule)
-  let modifContainer = document.querySelector(".modifContainer")
   let couleur = resultActuelVehicule.couleur
   let dateImmatriculation = resultActuelVehicule.date_premiere_immatriculation
   let energie = resultActuelVehicule.energie 
@@ -781,6 +780,68 @@ btnChangementVehicule.addEventListener("click", async () => {
       let labelMarque = document.createElement("p")
       labelMarque.textContent = `marque actuel : ${modele}`
       modifContainer.append(labelMarque)
+      const changeMarque = document.createElement("input")
+      changeMarque.setAttribute("type","text")
+      changeMarque.setAttribute("placeholder","entrez la nouvelle marque")
+      changeMarque.setAttribute("class","inputModifVehicule")
+      modifContainer.append(changeMarque)
+      const btnChangeMarque = document.createElement("button") 
+      btnChangeMarque.setAttribute("type",'button')
+      btnChangeMarque.setAttribute("class","btnModifVehicule")
+      btnChangeMarque.textContent = "modifier"
+      modifContainer.append(btnChangeMarque)
+      let labelCouleur = document.createElement("p")
+      labelCouleur.textContent = `couleur actuel : ${couleur}`
+      modifContainer.append(labelCouleur)
+      const changeCouleur = document.createElement("input")
+      changeCouleur.setAttribute("type","text")
+      changeCouleur.setAttribute("placeholder","entrez la nouvelle couleur")
+      changeCouleur.setAttribute("class","inputModifVehicule")
+      modifContainer.append(changeCouleur)
+      const btnChangeCouleur = document.createElement("button")
+      btnChangeCouleur.setAttribute("type","button")
+      btnChangeCouleur.setAttribute("class","btnModifVehicule")
+      btnChangeCouleur.textContent = "modifier"
+      modifContainer.append(btnChangeCouleur)
+      let labelDateImmatriculation = document.createElement("p")
+      labelDateImmatriculation.textContent = `date de premiére mise en circulation ${dateImmatriculation}`
+      modifContainer.append(labelDateImmatriculation)
+      const changeDateImmatriculation = document.createElement("input")
+      changeDateImmatriculation.setAttribute("type","text")
+      changeDateImmatriculation.setAttribute("placeholder","entrez la nouvelle date d'immatriculation")
+      changeDateImmatriculation.setAttribute("class","inputModifVehicule")
+      modifContainer.append(changeDateImmatriculation)
+      const btnChangeDateImmatriculation = document.createElement("button")
+      btnChangeDateImmatriculation.setAttribute("type","button")
+      btnChangeDateImmatriculation.setAttribute("class","btnModifVehicule")
+      btnChangeDateImmatriculation.textContent = "modifier"
+      modifContainer.append(btnChangeDateImmatriculation)
+      let labelImmatriculation = document.createElement("p")
+      labelImmatriculation.textContent = `immatriculation du vehicule ${immatriculation}` // trouvé un systeme de controle certificat d'immatriculation
+      modifContainer.append(labelImmatriculation) 
+      const changeImmatriculation = document.createElement("input")
+      changeImmatriculation.setAttribute("type","text")
+      changeImmatriculation.setAttribute("placeholder","entrez la nouvelle immatriculation")
+      changeImmatriculation.setAttribute("class","inputModifVehicule")
+      modifContainer.append(changeImmatriculation)
+      const btnChangeImmatriculation = document.createElement("button")
+      btnChangeImmatriculation.setAttribute("type","button")
+      btnChangeImmatriculation.setAttribute("class","btnModifVehicule")
+      btnChangeImmatriculation.textContent ="modifier"
+      modifContainer.append(btnChangeImmatriculation)
+      let labelEnergie = document.createElement("p")
+      labelEnergie.textContent =`énergie utilisé : ${energie}`
+      modifContainer.append(labelEnergie)
+      const changeEnergie = document.createElement("input")
+      changeEnergie.setAttribute("type","text")
+      changeEnergie.setAttribute("placeholder","entrez la nouvelle énergie")
+      changeEnergie.setAttribute("class","inputModifVehicule")
+      modifContainer.append(changeEnergie)
+      const btnChangeEnergie = document.createElement("button")
+      btnChangeEnergie.setAttribute("type","button")
+      btnChangeEnergie.setAttribute("class","btnModifVehicule")
+      btnChangeEnergie.textContent = "modifier"
+      modifContainer.append(btnChangeEnergie)
   }
   },150)
 
