@@ -790,6 +790,7 @@ btnChangementVehicule.addEventListener("click", async () => {
       btnChangeMarque.setAttribute("class","btnModifVehicule")
       btnChangeMarque.textContent = "modifier"
       modifContainer.append(btnChangeMarque)
+      //ajouter un input pour le modéle et pareil du coté API
       let labelCouleur = document.createElement("p")
       labelCouleur.textContent = `couleur actuel : ${couleur}`
       modifContainer.append(labelCouleur)
@@ -807,7 +808,7 @@ btnChangementVehicule.addEventListener("click", async () => {
       labelDateImmatriculation.textContent = `date de premiére mise en circulation ${dateImmatriculation}`
       modifContainer.append(labelDateImmatriculation)
       const changeDateImmatriculation = document.createElement("input")
-      changeDateImmatriculation.setAttribute("type","text")
+      changeDateImmatriculation.setAttribute("type","date")
       changeDateImmatriculation.setAttribute("placeholder","entrez la nouvelle date d'immatriculation")
       changeDateImmatriculation.setAttribute("class","inputModifVehicule")
       modifContainer.append(changeDateImmatriculation)
@@ -842,6 +843,72 @@ btnChangementVehicule.addEventListener("click", async () => {
       btnChangeEnergie.setAttribute("class","btnModifVehicule")
       btnChangeEnergie.textContent = "modifier"
       modifContainer.append(btnChangeEnergie)
+
+      btnChangeMarque.addEventListener("click",async () => {
+        console.log("ok")
+        let newMarque= changeMarque.value
+        const dataChangeMarque = new FormData()
+        dataChangeMarque.append("data","changeMarque")
+        dataChangeMarque.append("newMarque",newMarque)
+        dataChangeMarque.append("id",id) 
+        const envoiNewMarque = await fetch("/carpooling-api/index.php",
+          {
+          method : "POST", 
+          body : dataChangeMarque
+          })
+      })
+      btnChangeCouleur.addEventListener("click", async ()=> {
+        console.log("ok 2")
+        let newCouleur = changeCouleur.value
+        const dataChangeCouleur = new FormData()
+        dataChangeCouleur.append("data","changeCouleur")
+        dataChangeCouleur.append("newCouleur",newCouleur)
+        dataChangeCouleur.append("id",id) 
+        const envoiNewCouleur = await fetch("/carpooling-api/index.php",
+          {
+           method : "POST", 
+           body : dataChangeCouleur
+          })
+      })
+      btnChangeDateImmatriculation.addEventListener("click", async () => {
+        console.log("ok 3")
+        let newDateImmatriculation = changeDateImmatriculation.value 
+        const dataChangeImmatriculation = new FormData()
+        dataChangeImmatriculation.append("data","changeDateImmatriculation")
+        dataChangeImmatriculation.append("newDateImmatriculation",newDateImmatriculation)
+        dataChangeImmatriculation.append("id",id)
+        const envoiNewDateImmatriculation = await fetch("/carpooling-api/index.php",
+          {
+          method : "POST",
+          body : dataChangeImmatriculation
+          })
+      })
+      btnChangeImmatriculation.addEventListener("click", async () => {
+        console.log("ok 4")
+        let newImmatriculation = changeImmatriculation.value
+        const dataCHangeImmatriculation = new FormData()
+        dataCHangeImmatriculation.append("data","changeImmatriculation")
+        dataCHangeImmatriculation.append("newImmatriculation",newImmatriculation)
+        dataCHangeImmatriculation.append("id",id)
+        const envoiNewImmatriculation = await fetch("/carpooling-api/index.php",
+          {
+          method : "POST", 
+          body : dataCHangeImmatriculation
+          })
+      })
+      btnChangeEnergie.addEventListener("click", async () => {
+        console.log("ok 5")
+        let newEnergie = changeEnergie.value
+        const dataNewEnergie = new FormData()
+        dataNewEnergie.append("data","changeEnergie")
+        dataNewEnergie.append("newEnergie",newEnergie)
+        dataNewEnergie.append("id",id)
+        const envoiNewEnergie = await fetch("/carpooling-api/index.php",
+          {
+            method : "POST",
+            body : dataNewEnergie
+          }) 
+      })
   }
   },150)
 

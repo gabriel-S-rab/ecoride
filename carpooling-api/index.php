@@ -209,7 +209,56 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $recupInfoVehicule = $infoVehicule->fetch(PDO::FETCH_ASSOC);
               if(http_response_code()===200){
                 echo json_encode($recupInfoVehicule);
+                exit();
               }
+            }
+            if(htmlspecialchars($_POST["data"])==="changeMarque"){
+              $id=htmlspecialchars($_POST["id"]);
+              $newMarque=htmlspecialchars($_POST["newMarque"]);
+              $changeMarque = $connexion->prepare("UPDATE voiture SET marque=:marque WHERE voiture_id=:id");
+              $changeMarque->bindParam(":marque",$newMarque,PDO::PARAM_STR);
+              $changeMarque->bindParam(":id",$id,PDO::PARAM_STR); 
+              $changeMarque->execute();
+              if(http_response_code()!==200){
+                echo json_encode(["test"=>"erreur"]);
+                exit();
+              }
+            }
+            if(htmlspecialchars($_POST["data"])==="changeCouleur"){
+              $id=htmlspecialchars($_POST["id"]); 
+              $newCouleur=htmlspecialchars($_POST["newCouleur"]);
+              $changeCouleur=$connexion->prepare("UPDATE voiture SET couleur=:couleur WHERE voiture_id=:id"); 
+              $changeCouleur->bindParam(":couleur",$newCouleur,PDO::PARAM_STR); 
+              $changeCouleur->bindParam(":id",$id,PDO::PARAM_STR); 
+              $changeCouleur->execute();
+              exit();
+            }
+            if(htmlspecialchars($_POST["data"])==="changeDateImmatriculation"){
+              $id=htmlspecialchars($_POST["id"]);
+              $newDateImmatriculation=htmlspecialchars($_POST["newDateImmatriculation"]); 
+              $changeDateImmatriculation=$connexion->prepare("UPDATE voiture SET date_premiere_immatriculation=:dateImmatriculation WHERE voiture_id=:id"); 
+              $changeDateImmatriculation->bindParam(":id",$id,PDO::PARAM_STR); 
+              $changeDateImmatriculation->bindParam(":dateImmatriculation",$newDateImmatriculation,PDO::PARAM_STR);
+              $changeDateImmatriculation->execute();
+              exit();
+            }
+            if(htmlspecialchars($_POST["data"])==="changeImmatriculation"){
+              $id=htmlspecialchars($_POST["id"]);
+              $newimmatriculation=htmlspecialchars($_POST["newImmatriculation"]); 
+              $envoiNewImmatriculation=$connexion->prepare("UPDATE voiture SET immatriculation=:immatriculation WHERE voiture_id=:id"); 
+              $envoiNewImmatriculation->bindParam(":immatriculation",$newimmatriculation,PDO::PARAM_STR); 
+              $envoiNewImmatriculation->bindParam(":id",$id,PDO::PARAM_STR); 
+              $envoiNewImmatriculation->execute();
+              exit();
+            }
+            if(htmlspecialchars($_POST["data"])==="changeEnergie"){
+              $id=htmlspecialchars($_POST["id"]);
+              $newEnergie = htmlspecialchars($_POST["newEnergie"]); 
+              $changeNewEnergie=$connexion->prepare("UPDATE voiture SET energie=:energie WHERE voiture_id=:id"); 
+              $changeNewEnergie->bindParam(":energie",$newEnergie,PDO::PARAM_STR);
+              $changeNewEnergie->bindParam(":id",$id,PDO::PARAM_STR); 
+              $changeNewEnergie->execute(); 
+              exit();
             }
             }
           
