@@ -260,6 +260,15 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $changeNewEnergie->execute(); 
               exit();
             }
+            if(htmlspecialchars($_POST["data"])==="changeModele"){
+              $id = htmlspecialchars($_POST["id"]);
+              $newModele = htmlspecialchars($_POST["newModele"]);
+              $requeteChangeModele = $connexion->prepare("UPDATE voiture SET modele=:modele WHERE voiture_id=:id"); 
+              $requeteChangeModele->bindParam(":modele",$newModele,PDO::PARAM_STR);
+              $requeteChangeModele->bindParam(":id",$id,PDO::PARAM_STR); 
+              $requeteChangeModele->execute();
+              exit();
+            }
             }
           
 

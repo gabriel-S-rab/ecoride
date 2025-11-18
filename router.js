@@ -35,7 +35,6 @@ async function recovery(){
    body : filter
    })
    utilisateur = await reponse.json().then(Response => {
-    console.log(utilisateur)
    return utilisateur =  Response
  })
 }
@@ -135,6 +134,9 @@ function gestionAffichage(){
   connexion.setAttribute("hidden","")
   monProfil.removeAttribute("hidden")
   deconnexion.removeAttribute("hidden")
+  if(sessionStorage.getItem("role")==="administrateur"){
+    // trouvé une solution pour gérer l'identification administrateur
+  }
 }
 }
 gestionAffichage()
@@ -146,7 +148,6 @@ function detail(btnDetail,element){
     path=routes['/detail']
     afficher(path).then( ok => {
     navigate(event,path,url)
-    console.log(element)
     // ajouter l'affichage des éléments
     // function asynchrone pour récupérer les avis du conducteur
     // function asynchrone pour récupérer le modéle et la marque du véhicule
@@ -167,11 +168,7 @@ function detail(btnDetail,element){
                           <p>${element.commentaire}</p>
                           ` // a compléter
    carpoolingSearch.innerHTML = elementblock
-  
-  console.log(carpoolingSearch)
-  console.log(element.pseudo)
-
-    }) //element .then
+    }) 
   })
 }
 
@@ -196,10 +193,8 @@ async function btnSearch(){
       navigate(event,path,url);
       await afficher(path)
       select.selectedIndex=0
-      console.log(utilisateur)
       utilisateur.forEach(element => {
         if(departure===element.lieu_depart && destination===element.lieu_arrivee && dateDeparture===element.date_depart){    
-          console.log(element)
           screenBlock(element)
               }
              })
@@ -212,7 +207,7 @@ async function btnSearch(){
                 let driverNotation = document.getElementById("driverNotation")
                 let  carpoolingSearch=document.querySelector(".carpoolingSearchBlock")
                 
-                console.log(carpoolingSearch)
+                
                 //modif condition
                 
                 if(btnForm!==null && travelEco!==null && travelPrice!==null && travelDuration!==null && driverNotation!==null && carpoolingSearch!==null){
@@ -356,19 +351,15 @@ btnFormConnexion.addEventListener("click", async () => {
   formdata.append("data","connexion")
   formdata.append("identifiant",identifiant)
   formdata.append("mdp",mdp)
-  console.log(formdata)
   const response = await fetch("/carpooling-api/index.php", 
     {
       method:"POST", 
       body : formdata
     }
   )
- console.log("ok")
  let control = await response.json()
-  console.log(control)
  if(control.test==="ok connexion"){
-  console.log("ok")
-  console.log(control.id)
+  
   if(control.id){
   sessionStorage.setItem("id",`${control.id}`)
    path=routes["/presentation"]
@@ -380,9 +371,6 @@ btnFormConnexion.addEventListener("click", async () => {
   inscription.setAttribute("hidden","")
   connexion.setAttribute("hidden","")
   gestionAffichage() 
-  console.log(inscription)
-  console.log(connexion)
- 
   }
  }
  
@@ -409,7 +397,6 @@ let mdp = document.querySelector(".inputmdp")
 if(btnInscription){
   clearInterval(interval)
 btnInscription.addEventListener('click', async () => {
-  console.log(prenom.value,nom.value,dateNaissance.value,adresse.value,tel.value,profilType)
   const formData = new FormData()
   formData.append("data","inscription")
   formData.append("prenom",prenom.value)
@@ -428,7 +415,6 @@ btnInscription.addEventListener('click', async () => {
     })
      let control = await response.json() 
      if(control.id){
-      console.log(control.id)
     //  sessionStorage.setItem("id",id)
      }
      
@@ -445,7 +431,6 @@ btnInscription.addEventListener('click', async () => {
      const typeVehicule = document.querySelector(".typeVehicule")
      const btnInscription = document.querySelector(".btnInscription")
      if(btnInscription){
-      console.log(marque,modele,dateMiseEnCirculation,couleur,immatriculation,typeVehicule,btnInscription)
       clearInterval(interval)
       btnInscription.addEventListener("click",async () => {
         const formData = new FormData()
@@ -465,7 +450,6 @@ btnInscription.addEventListener('click', async () => {
           })
           const confirm = await response.json() 
           if(confirm.confirmVehicule==="confirmok"){
-            console.log("l'opération a réussi")
             alert("vous étes bien inscrit !")
             path=routes["/presentation"]
             navigate(event,path,url)
@@ -510,7 +494,6 @@ if(infoProfil){
   const interval = setInterval(()=> {
     const element = document.querySelector(".element")
     if(element){
-      console.log(element)
       clearInterval(interval)
       console.log(infoProfil)
   const email = infoProfil.email 
@@ -520,7 +503,6 @@ if(infoProfil){
   const adresse = infoProfil.adresse 
   const tel = infoProfil.telephone
   const pseudo = infoProfil.pseudo
-  console.log(email,nom,prenom,dateNaissance,adresse,tel)
   // affichage pseudo
 const pseudoProfil = document.createElement("p")
 pseudoProfil.setAttribute("class","pseudo") 
@@ -615,7 +597,6 @@ if(infoProfil.role!=="covoitureur"){
   btnChangementVehicule.setAttribute("hidden","")
 }
 btnModifPseudo.addEventListener("click", async () => {
-  console.log(modifPseudo.value)
   const changePseudo = new FormData()
   let nouveauPseudo = modifPseudo.value
   let id = sessionStorage.getItem("id")
@@ -635,7 +616,6 @@ btnModifPseudo.addEventListener("click", async () => {
 })
 
 btnModifNom.addEventListener("click", async () => {  // test avec selection direct de l'élément créer
-  console.log(modifNom.value)
   const changeNom = new FormData()
   let nouveauNom = modifNom.value
   let id = sessionStorage.getItem("id")
@@ -652,7 +632,6 @@ btnModifNom.addEventListener("click", async () => {  // test avec selection dire
   }
 })
 btnModifprenom.addEventListener("click", async () => {
-  console.log(modifPrenom.value)
  const changePrenom = new FormData()
  let nouveauPrenom = modifPrenom.value
  let id = sessionStorage.getItem("id")
@@ -672,7 +651,6 @@ btnModifprenom.addEventListener("click", async () => {
   }
 })
 btnModifemail.addEventListener("click", async () => {
-  console.log(modifemail.value)
   const changeEmail = new FormData()
   let nouveauEmail = modifemail.value 
   let id = sessionStorage.getItem("id")
@@ -690,7 +668,6 @@ if(responseEnvoiNouveauEmail.confirmNewEmail==="ok"){
 }
 })
 btnModifadresse.addEventListener("click", async () => {
-  console.log(modifadresse.value)
   const  changeAdresse = new FormData()
   let nouvelleAdresse = modifadresse.value 
   let id = sessionStorage.getItem("id")
@@ -708,7 +685,6 @@ btnModifadresse.addEventListener("click", async () => {
     }
 })
 btnModiftel.addEventListener("click", async () => {
-  console.log(modiftel.value)
   const changeTel = new FormData()
   let nouveauTel = modiftel.value 
   let id = sessionStorage.getItem("id")
@@ -727,7 +703,6 @@ btnModiftel.addEventListener("click", async () => {
 })
 btnValidatemdp.addEventListener("click", async () => {
   if(mdp.value!=="" && confirmMdp.value!==""){
-  console.log(mdp.value)
   const changeMdp = new FormData()
   let nouveauMdp = mdp.value 
   let confirmfinalMdp = confirmMdp.value
@@ -744,7 +719,6 @@ btnValidatemdp.addEventListener("click", async () => {
   )
   const responseEnvoiNouveauMdp = await envoiNouveauMdp.json()
   if(responseEnvoiNouveauMdp.confirmNewMdp ==="ok"){
-    console.log("le mot de passe a bien était changé !")
   }else if(responseEnvoiNouveauMdp.erreur ==="ok"){
     alert("mot de passe saisi non identique ! veuillez recommencer.")
   }
@@ -753,7 +727,6 @@ btnValidatemdp.addEventListener("click", async () => {
 }
 })
 btnChangementVehicule.addEventListener("click", async () => {
-  console.log("changement de vehicule")
   path=routes["/changementVehicule"]
   navigate(event,path,url)
   afficher(path)
@@ -767,18 +740,18 @@ btnChangementVehicule.addEventListener("click", async () => {
       body : actuelVehicule
     })
   const resultActuelVehicule = await recupActuelVehicule.json() 
-  console.log(resultActuelVehicule)
   let couleur = resultActuelVehicule.couleur
   let dateImmatriculation = resultActuelVehicule.date_premiere_immatriculation
   let energie = resultActuelVehicule.energie 
   let immatriculation = resultActuelVehicule.immatriculation
   let modele = resultActuelVehicule.modele 
+  let marque = resultActuelVehicule.marque
   let interval = setInterval(()=>{
   let modifContainer = document.querySelector(".modifContainer")
   if(modifContainer){
     clearInterval(interval)
       let labelMarque = document.createElement("p")
-      labelMarque.textContent = `marque actuel : ${modele}`
+      labelMarque.textContent = `marque actuel : ${marque}`
       modifContainer.append(labelMarque)
       const changeMarque = document.createElement("input")
       changeMarque.setAttribute("type","text")
@@ -791,6 +764,19 @@ btnChangementVehicule.addEventListener("click", async () => {
       btnChangeMarque.textContent = "modifier"
       modifContainer.append(btnChangeMarque)
       //ajouter un input pour le modéle et pareil du coté API
+      const labelChangeModele = document.createElement("p")
+      labelChangeModele.textContent = `modele actuel : ${modele}`
+      modifContainer.append(labelChangeModele)
+      const changeModele = document.createElement("input")
+      changeModele.setAttribute("type","text")
+      changeModele.setAttribute("placeholder","entrez le modele")
+      changeModele.setAttribute("class","inputModifVehicule")
+      modifContainer.append(changeModele)
+      const btnChangeModele = document.createElement("button")
+      btnChangeModele.setAttribute("type","button")
+      btnChangeModele.setAttribute("class","btnModifVehicule")
+      btnChangeModele.textContent = "modifier"
+      modifContainer.append(btnChangeModele)
       let labelCouleur = document.createElement("p")
       labelCouleur.textContent = `couleur actuel : ${couleur}`
       modifContainer.append(labelCouleur)
@@ -845,7 +831,6 @@ btnChangementVehicule.addEventListener("click", async () => {
       modifContainer.append(btnChangeEnergie)
 
       btnChangeMarque.addEventListener("click",async () => {
-        console.log("ok")
         let newMarque= changeMarque.value
         const dataChangeMarque = new FormData()
         dataChangeMarque.append("data","changeMarque")
@@ -856,9 +841,9 @@ btnChangementVehicule.addEventListener("click", async () => {
           method : "POST", 
           body : dataChangeMarque
           })
+          changeMarque.value=""
       })
       btnChangeCouleur.addEventListener("click", async ()=> {
-        console.log("ok 2")
         let newCouleur = changeCouleur.value
         const dataChangeCouleur = new FormData()
         dataChangeCouleur.append("data","changeCouleur")
@@ -869,9 +854,9 @@ btnChangementVehicule.addEventListener("click", async () => {
            method : "POST", 
            body : dataChangeCouleur
           })
+          changeCouleur.value=""
       })
       btnChangeDateImmatriculation.addEventListener("click", async () => {
-        console.log("ok 3")
         let newDateImmatriculation = changeDateImmatriculation.value 
         const dataChangeImmatriculation = new FormData()
         dataChangeImmatriculation.append("data","changeDateImmatriculation")
@@ -882,9 +867,9 @@ btnChangementVehicule.addEventListener("click", async () => {
           method : "POST",
           body : dataChangeImmatriculation
           })
+          changeDateImmatriculation.value=""
       })
       btnChangeImmatriculation.addEventListener("click", async () => {
-        console.log("ok 4")
         let newImmatriculation = changeImmatriculation.value
         const dataCHangeImmatriculation = new FormData()
         dataCHangeImmatriculation.append("data","changeImmatriculation")
@@ -895,9 +880,9 @@ btnChangementVehicule.addEventListener("click", async () => {
           method : "POST", 
           body : dataCHangeImmatriculation
           })
+          changeImmatriculation.value=""
       })
       btnChangeEnergie.addEventListener("click", async () => {
-        console.log("ok 5")
         let newEnergie = changeEnergie.value
         const dataNewEnergie = new FormData()
         dataNewEnergie.append("data","changeEnergie")
@@ -908,6 +893,21 @@ btnChangementVehicule.addEventListener("click", async () => {
             method : "POST",
             body : dataNewEnergie
           }) 
+          changeEnergie.value=""
+      })
+      btnChangeModele.addEventListener("click", async () => {
+        let newModele = changeModele.value
+        const dataNewModele = new FormData() 
+        dataNewModele.append("data","changeModele") 
+        dataNewModele.append("newModele",newModele)
+        dataNewModele.append("id",id)
+        const envoiDataNewModele = await fetch("/carpooling-api/index.php",
+          {
+            method : "POST", 
+            body : dataNewModele
+          }
+        )
+        changeModele.value=""
       })
   }
   },150)
