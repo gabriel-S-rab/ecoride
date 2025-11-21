@@ -13,7 +13,8 @@ const routes = { /* voir pour créer une class */
    "/inscription" : "/pages/inscription.php",
    "/inscriptionVehicule" : "/pages/inscriptionVehicule.php",
    "/monProfil" : "/pages/monProfil.php", 
-   "/changementVehicule" : "/pages/modifVehicule.php"
+   "/changementVehicule" : "/pages/modifVehicule.php",
+   "/ajoutCovoiturage" : "/pages/ajoutCovoiturage.php"
 }
 
 const url = window.location.origin; 
@@ -101,6 +102,7 @@ function screenBlock(element){
               blockImage.setAttribute("src",`${element.photo}`)
               blockImage.setAttribute("height","100px")
               blockImage.setAttribute("width","100px")
+              
              
              
               let blockPseudo = document.createElement("p")
@@ -114,9 +116,16 @@ function screenBlock(element){
               let btnDetail = document.createElement("button")
               btnDetail.setAttribute("class","btnDetail")
               btnDetail.textContent = "détail"
+             
+              // test ajout boutton participer
+
+              const btnParticipate = document.createElement("button")
+              btnParticipate.setAttribute("class","btnParticipate")
+              btnParticipate.setAttribute("type","button")
+              btnParticipate.textContent ="participer"
 
               blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
-              blockContainer2.append(blockPseudo,blockNote,blockImage)
+              blockContainer2.append(blockPseudo,blockNote,blockImage,btnParticipate)
               blockCentral.append(blockContainer1,blockContainer2)
               carpoolingSearch.append(blockCentral)
 
@@ -130,12 +139,15 @@ function gestionAffichage(){
   let connexion = document.querySelector(".connexion")
   let monProfil = document.querySelector(".monProfil")
   let deconnexion = document.querySelector(".deconnexion")
+  let ajoutCovoiturage = document.querySelector(".ajoutCovoiturage")
   inscription.setAttribute("hidden","")
   connexion.setAttribute("hidden","")
   monProfil.removeAttribute("hidden")
   deconnexion.removeAttribute("hidden")
+  ajoutCovoiturage.removeAttribute("hidden")
   if(sessionStorage.getItem("role")==="administrateur"){
-    // trouvé une solution pour gérer l'identification administrateur
+    let admin = document.querySelector(".admin")
+    admin.removeAttribute("hidden")
   }
 }
 }
@@ -919,6 +931,28 @@ btnChangementVehicule.addEventListener("click", async () => {
 }
 
 // implémenter
+break;
+case "/ajoutCovoiturage" : 
+path=routes["/ajoutCovoiturage"]
+navigate(event,path,url)
+afficher(path)
+let intervalTest = setInterval( () => {
+const btnValidateCovoiturage = document.querySelector(".btnValidateCovoiturage")
+const villeDepart = document.querySelector("#villeDepart")
+const villeArrivee = document.querySelector("#villeArrivee")
+const heureDepart = document.querySelector("#heureDepart")
+const heureArrivee = document.querySelector("#heureArrivee")
+const placeDispo = document.querySelector("#nbrplace")
+if(btnValidateCovoiturage){
+clearInterval(intervalTest)
+btnValidateCovoiturage.addEventListener("click", ()=> {
+  console.log(villeDepart.value,villeArrivee.value,heureDepart.value,heureArrivee.value,placeDispo.value)
+})
+}
+},150)
+
+
+
 break;
 case "deconnexion" : 
 let deconnexion = document.querySelector(".deconnexion")// éventuellement a supprimer

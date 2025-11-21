@@ -20,6 +20,8 @@
                 <option class="monProfil" value="/monProfil" hidden>Mon profil</option>
                 <option class="connexion" value="/connexion">Connexion</option>
                 <option class="inscription" value="/inscription">Inscription</option>
+                <option class="ajoutCovoiturage" value="/ajoutCovoiturage" hidden>Ajout covoiturage</option>
+                <option class="admin" value="/panneauAdministration" hidden>administration</option>
                 <option class="contact" value="/contact">Contact</option>
                 <option class="deconnexion" value="deconnexion" hidden>Deconnexion</option>
             </select>
