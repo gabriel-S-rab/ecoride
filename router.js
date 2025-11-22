@@ -52,7 +52,7 @@ main.innerHTML = repAffich;
 
 //nouveau test de fonction
 function screenBlock(element){
-
+console.log(element) // a supprimers
                    let carpoolingSearch = document.querySelector(".carpoolingSearchBlock")
 
               let blockCentral = document.createElement("div")
@@ -75,16 +75,16 @@ function screenBlock(element){
               
               let blockDateDeparture = document.createElement("p")
               blockDateDeparture.setAttribute("class","blockDateDeparture")
-              blockDateDeparture.textContent = "date de départ : "+element.date_depart
+              blockDateDeparture.textContent = "date de départ : "+element.depart
              
               let blockDepartureHour = document.createElement("p")
               blockDepartureHour.setAttribute("class","blockDepartureHour")
-              blockDepartureHour.textContent = "heure de départ : "+element.heure_depart
-             
+              blockDepartureHour.textContent = "heure de départ : "+element.arrivee
+             /*
               let blockFinishHour = document.createElement("p")
               blockFinishHour.setAttribute("class","blockFinishHour")
               blockFinishHour.textContent = "heure d'arrivée : "+ element.heure_arrivee
-             
+             */
               let blockNumberPassenger = document.createElement("p")
               blockNumberPassenger.setAttribute("class","blockNumberPassenger")
               blockNumberPassenger.textContent = "place disponible : "+element.nb_place
@@ -206,7 +206,7 @@ async function btnSearch(){
       await afficher(path)
       select.selectedIndex=0
       utilisateur.forEach(element => {
-        if(departure===element.lieu_depart && destination===element.lieu_arrivee && dateDeparture===element.date_depart){    
+        if(departure===element.lieu_depart && destination===element.lieu_arrivee && dateDeparture===element.depart){    
           screenBlock(element)
               }
              })
@@ -312,7 +312,7 @@ case "/covoiturage" :
   path = routes["/covoiturage"];
 navigate(event,path,url);
 await afficher(path)
-
+// ajouter lieu de depart et d'arrivé
 
 if(document.readyState==="complete"){
   utilisateur.forEach(element  => {
@@ -330,9 +330,9 @@ if(document.readyState==="complete"){
     let blockPlace = document.createElement("p")
     blockPlace.textContent= element.nb_place
     let blockDepartureHour = document.createElement("p")
-    blockDepartureHour.textContent = element.heure_depart
+    blockDepartureHour.textContent = element.depart
     let blockFinishHour = document.createElement("p")
-    blockFinishHour.textContent = element.heure_arrivee
+    blockFinishHour.textContent = element.arrivee
     let blocktravelType = document.createElement("p")
     blocktravelType.textContent = element.statut
     globalBlock.append(blockPseudo)
@@ -943,10 +943,29 @@ const villeArrivee = document.querySelector("#villeArrivee")
 const heureDepart = document.querySelector("#heureDepart")
 const heureArrivee = document.querySelector("#heureArrivee")
 const placeDispo = document.querySelector("#nbrplace")
+const dureeVoyage = document.querySelector("#dureeVoyage")
+const prixParPersonne = document.querySelector("#price")
 if(btnValidateCovoiturage){
 clearInterval(intervalTest)
-btnValidateCovoiturage.addEventListener("click", ()=> {
+btnValidateCovoiturage.addEventListener("click", async ()=> {
   console.log(villeDepart.value,villeArrivee.value,heureDepart.value,heureArrivee.value,placeDispo.value)
+  const DataCovoiturage = new FormData()
+  const id = sessionStorage.getItem("id")
+  DataCovoiturage.append("data","covoiturage")
+  DataCovoiturage.append("id",id)
+  DataCovoiturage.append("villeDepart",villeDepart.value)
+  DataCovoiturage.append("villeArrivee",villeArrivee.value)
+  DataCovoiturage.append("Depart",heureDepart.value)
+  DataCovoiturage.append("Arrivee",heureArrivee.value)
+  DataCovoiturage.append("placeDispo",placeDispo.value)
+  DataCovoiturage.append("dureeVoyage",dureeVoyage.value)
+  DataCovoiturage.append("price",prixParPersonne.value)
+  const envoiDataCovoiturage = await fetch("/carpooling-api/index.php",
+    {
+     method : "POST",
+     body : DataCovoiturage
+    })
+   // const confirmEnvoiDataCovoiturage = await envoiDataCovoiturage.json()
 })
 }
 },150)

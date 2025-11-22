@@ -11,7 +11,7 @@ $connexion= new PDO("mysql:host=localhost;dbname=Covoiturage_db;charset=UTF8","r
     
 if($_SERVER["REQUEST_METHOD"]==="POST"){
       if(htmlspecialchars($_POST["data"])==="globalFetch"){
-      $sql ="SELECT * FROM covoiturage";
+      $sql ="SELECT * FROM covoiturage INNER JOIN utilisateur ON covoiturage.covoiturage_id=utilisateur.utilisateur_id";
             $request=$connexion->prepare($sql); 
             $request->execute(); 
             $result=$request->fetchAll(PDO::FETCH_ASSOC);
@@ -268,6 +268,29 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
               $requeteChangeModele->bindParam(":id",$id,PDO::PARAM_STR); 
               $requeteChangeModele->execute();
               exit();
+            }
+            if(htmlspecialchars($_POST["data"])==="covoiturage"){
+              $id = htmlspecialchars($_POST["id"]); 
+              $villeDepart = htmlspecialchars($_POST["villeDepart"]); 
+              $villeArrivee = htmlspecialchars($_POST["villeArrivee"]); 
+              $Depart = htmlspecialchars($_POST["Depart"]);
+              $Arrivee = htmlspecialchars($_POST["Arrivee"]);
+              $placeDispo = htmlspecialchars($_POST["placeDispo"]); 
+              $dureeVoyage = htmlspecialchars($_POST["dureeVoyage"]); 
+              $price = htmlspecialchars($_POST["price"]); 
+              $ajoutCovoiturage=$connexion->prepare("INSERT INTO covoiturage(covoiturage_id,arrivee,depart,dureeVoyage,lieu_arrivee,lieu_depart,nb_place,prix_personne)
+                                                     VALUES (:covoiturage_id,:arrivee,:depart,:dureeVoyage,:lieu_arrivee,:lieu_depart,:nb_place,:prix_personne)"); 
+              $ajoutCovoiturage->bindParam(":arrivee",$Arrivee,PDO::PARAM_STR); 
+              $ajoutCovoiturage->bindParam(":depart",$Depart,PDO::PARAM_STR); 
+              $ajoutCovoiturage->bindParam(":dureeVoyage",$dureeVoyage,PDO::PARAM_STR); 
+              $ajoutCovoiturage->bindParam(":lieu_arrivee",$villeArrivee,PDO::PARAM_STR);
+              $ajoutCovoiturage->bindParam(":lieu_depart",$villeDepart,PDO::PARAM_STR); 
+              $ajoutCovoiturage->bindParam(":nb_place",$placeDispo,PDO::PARAM_STR); 
+              $ajoutCovoiturage->bindParam(":prix_personne",$price,PDO::PARAM_STR); 
+              $ajoutCovoiturage->bindParam(":covoiturage_id",$id,PDO::PARAM_STR);
+              $ajoutCovoiturage->execute(); 
+              exit();
+
             }
             }
           

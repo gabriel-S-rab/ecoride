@@ -19,6 +19,12 @@
 <label for="nbrplace">Nombre de place disponible :</label>
 <input class="inputCovoiturage" id="nbrplace" type="number" placeholder="Sélectionnez le nombre de place disponible">
 
+<label for="dureeVoyage">Durée du voyage</label>
+<input type="time" id="dureeVoyage" class="inputCovoiturage" placeholder="entrez la durée du voyage">
+
+<label for="price">Prix par personne :</label>
+<input type="number" id="price" class="inputCovoiturage" placeholder="entrez un prix">
+
 <button class="btnValidateCovoiturage" type="button">Valider</button> 
 </div>
 </div>
