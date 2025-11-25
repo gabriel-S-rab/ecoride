@@ -312,6 +312,12 @@ width: 100%;
     font-weight: 600;
     font-size: 20px; 
     cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.btnParticipate:hover
+{
+    transform: scale(1.2);
 }
 
 .blockDepartureCity,.blockDestination, .blockDateDeparture,.blockNumberPassenger,.blockDepartureHour,.blockFinishHour,.blockPrice,.blockTravelType,.blockImage,.blockPseudo,.blockNote
@@ -387,6 +393,12 @@ input[type="checkbox"]
     font-weight: 600;
     font-size: 20px; 
     cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.btnDetail:hover 
+{
+    transform: scale(1.2);
 }
 
 .carpoolingDetail 
@@ -784,4 +796,10 @@ margin-top: 15px;
 .btnValidateCovoiturage:hover
 {
 background-color:#919e79 ;
+}
+
+.containerCarpoolingresult
+{
+    height:100vh; 
+    width:100vw;
 }

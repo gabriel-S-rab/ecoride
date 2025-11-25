@@ -75,16 +75,17 @@ console.log(element) // a supprimers
               
               let blockDateDeparture = document.createElement("p")
               blockDateDeparture.setAttribute("class","blockDateDeparture")
-              blockDateDeparture.textContent = "date de départ : "+element.depart
+              let dateDepart = element.depart.slice(0,10)
+              let heureDepart = element.depart.slice(11,16)
+              blockDateDeparture.textContent = "Départ : "+dateDepart+" "+heureDepart
              
               let blockDepartureHour = document.createElement("p")
               blockDepartureHour.setAttribute("class","blockDepartureHour")
-              blockDepartureHour.textContent = "heure de départ : "+element.arrivee
-             /*
-              let blockFinishHour = document.createElement("p")
-              blockFinishHour.setAttribute("class","blockFinishHour")
-              blockFinishHour.textContent = "heure d'arrivée : "+ element.heure_arrivee
-             */
+              let dateArrivee = element.arrivee.slice(0,10)
+              let heureArrivee = element.arrivee.slice(11,16)
+              blockDepartureHour.textContent = "Arrivée : "+dateArrivee+" "+heureArrivee
+             
+              
               let blockNumberPassenger = document.createElement("p")
               blockNumberPassenger.setAttribute("class","blockNumberPassenger")
               blockNumberPassenger.textContent = "place disponible : "+element.nb_place
@@ -124,12 +125,30 @@ console.log(element) // a supprimers
               btnParticipate.setAttribute("type","button")
               btnParticipate.textContent ="participer"
 
-              blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockFinishHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
+              blockContainer1.append(blockDepartureCity,blockDestination,blockDateDeparture,blockDepartureHour,blockNumberPassenger,blockPrice,blockTravelType,btnDetail)
               blockContainer2.append(blockPseudo,blockNote,blockImage,btnParticipate)
               blockCentral.append(blockContainer1,blockContainer2)
               carpoolingSearch.append(blockCentral)
 
               detail(btnDetail,element)
+              const participer=document.querySelector(".btnParticipate") 
+              participer.addEventListener("click", async ()=>{
+                if(!sessionStorage.getItem("id")){
+                  alert("Vous devez avoir un compte et vous connecter pour participer !")
+                }else{
+                  let id = sessionStorage.getItem("id")
+                  // récupérer l'id du covoiturage (covoiturage_id)
+                  const participationCovoiturage = new FormData()
+                  participationCovoiturage.append("data","participationCovoiturage")
+                  participationCovoiturage.append("id",id)
+                  const envoiParticipationCovoiturage = await fetch("/carpooling-api/index.php",
+                    {
+                     method : "POST", 
+                     body : participationCovoiturage
+                    })
+                  alert("vous étes bien inscrit au covoiturage !")
+                }
+              })
 }
 
 //function pour gérer au cas ou il n'y a pas d'élement correspondant
@@ -206,7 +225,9 @@ async function btnSearch(){
       await afficher(path)
       select.selectedIndex=0
       utilisateur.forEach(element => {
-        if(departure===element.lieu_depart && destination===element.lieu_arrivee && dateDeparture===element.depart){    
+        const dateDepart = element.depart.slice(0,10)
+        // gérer les entré (enlévement des espace ou des majuscule)
+        if(departure===element.lieu_depart && destination===element.lieu_arrivee && dateDeparture===dateDepart){    
           screenBlock(element)
               }
              })

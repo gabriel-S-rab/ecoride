@@ -1,4 +1,6 @@
-<h2 class="carpoolingTitle">je suis bien sur la page du covoiturage</h2>
+<h2 class="carpoolingTitle">covoiturage disponible avec les informations selectionnées :</h2>
+<div class="containerCarpoolingresult">
+  
 <form class="filterForm">
     <label class="filterElement" for="travelEco">voyage écologique ?</label>
     <select id="travelEco" name="travelEco">
@@ -15,6 +17,7 @@
     <button class="filterElement btnForm" type="button">appliquer</button>
 </form>
 
-<div class="carpoolingContainer">
+  <div class="carpoolingContainer">
 <div class="carpoolingSearchBlock" ></div>
+</div>
 </div>
